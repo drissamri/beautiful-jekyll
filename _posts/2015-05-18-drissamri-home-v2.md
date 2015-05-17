@@ -13,7 +13,7 @@ I launched v1.0 of my website around October 2014. Most people I knew that had a
 If you have been here before, you'll notice the site has gone through a complete overhaul.
 It used to be a WordPress site with a tweaked [Fictive](https://wordpress.org/themes/fictive/) theme:
 
-![drissamri.be v1.0](./../img/post/drissamri-site-v1.jpg)
+![drissamri.be v1.0]({{ site.url }}/img/post/drissamri-site-v1.jpg)
 
 ### Why switch?
 If you have been following the news, there were quite some WordPress security problems lately.
