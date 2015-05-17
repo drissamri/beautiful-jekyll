@@ -32,7 +32,9 @@ This step is done after you named your Organization and created a Space where yo
 
 Go to the [catalog](https://console.ng.Bluemix.net/#/store/cloudOEPaneId=store), you'll be suprised with the amount of services you have at your disposal to hit the ground running with your application. Today we will only be focussing on the **Containers (Experimental)** service under the Integration sub section.
 
+<div style="width: 680px">
 ![Bluemix Containers]({{ site.url }}/img/post/bluemix-containers-service.jpg)
+</div>
 
 Here you get to choose a registry namespace, which will be the name for your private repository that will host your Docker images. You'll also get an API key which you will need in a minute to authenticate with the Container service.
 
