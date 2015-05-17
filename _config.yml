@@ -4,7 +4,7 @@
 # baseurl is the website's URL without the hostname
 
 # If you are building a simple GitHub user page (username.github.io) then use these settings:
-url: "http://username.github.io"
+url: "http://driss2.github.io"
 baseurl: ""
 
 # If you are building a GitHub project page then use these settings:
@@ -14,10 +14,10 @@ baseurl: ""
 # Of course don't forget to change the username and projectname to YOUR username and project
 
 # Name of website
-title: My website
+title: Driss Amri
 
 # Short description of your site
-description: A virtual proof that name is awesome!
+description: "A software engineer and web developer. Consider myself a World Citizen, love to travel."
 
 # --- Navigation bar options --- #
 
@@ -28,35 +28,35 @@ avatar: "/img/avatar-icon.png"
 # List of links in the navigation bar
 navbar-links:
   Home: ""
+  Publications: "publications"
   About Me: "aboutme"
-  Contact: "contact"
-  
+
 # --- Footer options --- #
 
 # Change all these values or delete the ones you don't want.
 # Important: you must keep the "name" parameter, everything else you can remove
 author:
-  name: Some Person
-  email: "youremail@domain.com"
-  facebook: yourname  # eg. daattali
-  github: yourname    # eg. daattali
-  twitter: yourname   # eg. daattali
-  linkedin: yourlink  # eg. "pub/dean-attali/8/946/143"
-  stackoverflow: yourlink  # eg. "users/3943160/daattali"
- 
+  name: Driss Amri
+  email: "hello@drissamri.be"
+  facebook: driss.amri
+  github: drissamri
+  twitter: drams88
+  linkedin: in/drissamri
+  stackoverflow: users/492723/driss-amri
+
 # Select which links to show in the footer
 footer-links-active:
-  rss: false
+  rss: true
   facebook: true
   email: true
   twitter: true
   github: true
-  linkedin: false
-  stackoverflow: false
+  linkedin: true
+  stackoverflow: true
 
 # How to display the link to the website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "MyWebsite.com"  # eg. "deanattali.com/beautiful-jekyll"
+url-pretty: "drissamri.be"
 
 # --- Misc --- #
 
@@ -64,7 +64,7 @@ url-pretty: "MyWebsite.com"  # eg. "deanattali.com/beautiful-jekyll"
 #disqus: ""
 
 # Fill in your Google Analytics ID to track your website using GA
-#google_analytics: ""
+google_analytics: "UA-62990349-1"
 
 # --- Don't need to touch anything below here (but you can if you want) --- #
 
@@ -82,7 +82,7 @@ defaults:
       path: ""
       type: "posts"
     values:
-      comments: true  # add comments to all blog posts
+      comments: false  # add comments to all blog posts
   -
     scope:
       path: "" # all files
