@@ -7,12 +7,6 @@
 url: "https://drissamri.be"
 baseurl: ""
 
-# If you are building a GitHub project page then use these settings:
-#url: "http://username.github.io/projectname"
-#baseurl: "/projectname"
-
-# Of course don't forget to change the username and projectname to YOUR username and project
-
 # Name of website
 title: Driss Amri
 
@@ -40,6 +34,7 @@ author:
   email: "hello@drissamri.be"
   facebook: driss.amri
   github: drissamri
+  bitbucket: drissamri
   twitter: drams88
   linkedin: in/drissamri
   stackoverflow: users/492723/driss-amri
@@ -51,6 +46,7 @@ footer-links-active:
   email: true
   twitter: true
   github: true
+  bitbucket: true
   linkedin: true
   stackoverflow: true
 
@@ -69,10 +65,10 @@ google_analytics: "UA-62990349-1"
 # --- Don't need to touch anything below here (but you can if you want) --- #
 
 # Output options (more information on Jekyll's site)
-timezone: "America/Vancouver"
+timezone: "Europe/Brussels"
 markdown: kramdown
 highlighter: pygments
-permalink: /:year-:month-:day-:title
+permalink: /blog/:year/:month/:day/:title
 paginate: 5
 
 # Default YAML values (more information on Jekyll's site)
