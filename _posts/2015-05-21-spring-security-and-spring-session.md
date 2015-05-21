@@ -158,7 +158,7 @@ We can verify the behaviour of our application by using curl:
 {% endhighlight %}
 
 Now let's do that again, but this time added Basic Authentication with our in-memory database user:  
-`curl -v http://localhost:8080/api/users`
+`curl -v http://localhost:8080/api/users -u user:password`
 
 {% highlight bash %}
 < HTTP/1.1 200 OK
