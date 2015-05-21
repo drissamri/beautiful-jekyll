@@ -6,7 +6,7 @@
   <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
 
   <meta name="author" content="{{ site.author.name }}" />
-  
+
   {% if page.subtitle %}
   <meta name="description" content="{{ page.subtitle }}">
   {% endif %}
@@ -17,14 +17,14 @@
     {% for css in page.common-ext-css %}
       <link rel="stylesheet" href="{{ css }}" />
     {% endfor %}
-  {% endif %}  
-  
+  {% endif %}
+
   {% if page.common-css %}
     {% for css in page.common-css %}
       <link rel="stylesheet" href="{{ css | prepend: site.baseurl | replace: '//', '/' }}" />
     {% endfor %}
   {% endif %}
-  
+
   {% if page.common-googlefonts %}
     {% for font in page.common-googlefonts %}
 	  <link rel="stylesheet" href="//fonts.googleapis.com/css?family={{ font }}" />
@@ -35,30 +35,30 @@
     {% for css in page.ext-css %}
       <link rel="stylesheet" href="{{ css }}" />
     {% endfor %}
-  {% endif %}  
-  
+  {% endif %}
+
   {% if page.css %}
     {% for css in page.css %}
       <link rel="stylesheet" href="{{ css | prepend: site.baseurl | replace: '//', '/' }}" />
     {% endfor %}
   {% endif %}
-  
+
   {% if page.googlefonts %}
     {% for font in page.googlefonts %}
 	  <link rel="stylesheet" href="//fonts.googleapis.com/css?family={{ font }}" />
     {% endfor %}
   {% endif %}
-  
+
   <!-- Facebook OpenGraph tags -->
   <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
   <meta property="og:type" content="website" />
-  
+
   {% if page.id %}
   <meta property="og:url" content="{{ site.url }}{{ page.url }}/" />
   {% else %}
   <meta property="og:url" content="{{ site.url }}{{ page.url | remove: '/index.html' | remove: '.html' }}" />
   {% endif %}
-  
+
   {% if page.fb-img %}
   <meta property="og:image" content="{{ page.fb-img }}" />
   {% elsif site.avatar %}
@@ -66,5 +66,17 @@
   {% else %}
   <meta property="og:image" content="" />
   {% endif %}
-  
+
+  {% if page.desc %}
+    <meta name="description" content="{{ page.desc }}" />
+    {% else %}
+    <meta name="description" content="I'm a Software Engineer and Java Consultant who loves to travel around the world." />
+    {% endif %}
+
+  {% if page.keywords %}
+ <meta name="keywords" content="{{ page.keywords }}" />
+{% else %}
+ <meta name="keywords" content="Driss Amri, Developer, Software Engineer, Java, Cloud, Docker, Bluemix, Cloud Foundry, DevOps, Continuous Delivery" />
+ {% endif %}
+
 </head>
