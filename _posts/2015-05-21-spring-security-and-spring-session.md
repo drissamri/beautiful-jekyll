@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Getting started with Spring Security and Spring Session
+title: Getting started with Spring Security, Spring Session and Redis
 author: Driss Amri
 date: 2015-05-21
 tags:
