@@ -13,7 +13,7 @@ tags:
 ---
 You want to build a scalable cloud ready application? Great! Let's have a look how to build a server  Spring Boot REST endpoint and secure it with stateless Spring Security. We want to authenticate every request with basic authentication OR with a token when the user has sent its credentials once. When a user authenticates with basic authentication we store a session ID in Redis with Spring Session and return it to the user to in the following requests.
 
-_If you haven't heard of Spring Boot before, be sure to read up on it on: [What are Microservices](http://127.0.0.1:4000/blog/architecture/what-are-microservices/) or [Build your own Linkshortener API](http://127.0.0.1:4000/blog/rest/building-your-own-linkshortener-api/)._
+_If you haven't heard of Spring Boot before, be sure to read up on it on: [What are Microservices]({{ site.url }}/blog/architecture/what-are-microservices/) or [Build your own Linkshortener API]({{ site.url }}/blog/rest/building-your-own-linkshortener-api/)._
 
 
 ## Standard HTTP Session in Java (JEE)
