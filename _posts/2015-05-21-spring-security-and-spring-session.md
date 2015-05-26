@@ -56,7 +56,7 @@ _pom.xml_
 </dependencies>
 {% endhighlight %}
 
-This would give us a working web application, that is secured by default because we include the Spring Boot Security Starter dependency. For ease of use we'll start an in-memory database with one user present to use for authentication. Every will authenticate every request with Basic Authentication and also create a `HeaderHttpSessionStrategy` to tell Spring to use a `X-Auth-Token` header for retrieving the session.
+This would give us a working web application, that is secured by default because we include the Spring Boot Security Starter dependency. For ease of use we'll start an in-memory database with one user present to use for authentication. We will authenticate every request with Basic Authentication and also create a `HeaderHttpSessionStrategy` to tell Spring to use a `X-Auth-Token` header for retrieving the session.
 
 
 _SecurityConfiguration.java_
@@ -93,7 +93,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 ## Hello Redis - a NoSQL key-value database
 We don't want to to reauthenticate every request by going to the database, this is why we will store a Session ID in Redis. This Session ID will be passed to the client after authenticating the first time, and from then on it can send this as a request header for all subsequent requests which will verify the user is authenticated.
 
-If you look at the Spring Session [documentation](http://docs.spring.io/spring-session/docs/current/reference/html5/#httpsession-redis) you'll see that they always use an `@EmbeddedRedisConfiguration` to startup an embedded Redis instance, it's pretty unclear that this is **NOT** yet available in Spring Session. They include some addtional classes in all their examples to get this to work, we'll have to wait for [Spring Session GitHub ticket](https://github.com/spring-projects/spring-session/issues/121) until this actually will be implemented in Spring itself. For now I have a simple Configuration class that starts an instance without any customization, by using the Embedded redis depdency.
+If you look at the Spring Session [documentation](http://docs.spring.io/spring-session/docs/current/reference/html5/#httpsession-redis) you'll see that they always use an `@EmbeddedRedisConfiguration` to start an embedded Redis instance, it's pretty unclear that this is **NOT** yet available in Spring Session. They included some addtional classes in all their examples to get this to work, we'll have to wait for [Spring Session GitHub ticket](https://github.com/spring-projects/spring-session/issues/121) until this will actually be implemented in Spring itself. For now I have a simple Configuration class that starts an instance without any customization, by using the Embedded redis depdency.
 
 _pom.xml_
 {% highlight xml %}
@@ -157,7 +157,7 @@ We can verify the behaviour of our application by using curl:
 < Date: Thu, 21 May 2015 21:44:26 GMT
 {% endhighlight %}
 
-Now let's do that again, but this time added Basic Authentication with our in-memory database user:  
+Now let's do that again, but this time add Basic Authentication with our in-memory database user:  
 `curl -v http://localhost:8080/api/users -u user:password`
 
 {% highlight bash %}
@@ -176,7 +176,7 @@ Now let's do that again, but this time added Basic Authentication with our in-me
 < Date: Thu, 21 May 2015 21:47:30 GMT
 {% endhighlight %}
 
-We sent our credentials and received a `x-auth-token` in the response, which we can use in the following requests to authenticate:  
+We send our credentials and received a `x-auth-token` in the response, which we can use in the following requests to authenticate:  
 `curl -v http://localhost:8080/api/users -H "x-auth-token: ef555ceb-1c77-4fdd-8e42-e04399fe5b95"`
 
 {% highlight bash %}
