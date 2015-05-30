@@ -57,7 +57,7 @@ url-pretty: "drissamri.be"
 # --- Misc --- #
 
 # Fill in your Disqus shortname (NOT the userid) if you want to support Disqus comments
-#disqus: ""
+disqus: "drissamri"
 
 # Fill in your Google Analytics ID to track your website using GA
 google_analytics: "UA-62990349-1"
@@ -78,7 +78,7 @@ defaults:
       path: ""
       type: "posts"
     values:
-      comments: false  # add comments to all blog posts
+      comments: true  # add comments to all blog posts
   -
     scope:
       path: "" # all files
