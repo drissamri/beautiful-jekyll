@@ -85,6 +85,7 @@ Spring Data JPA is basicially a standard in most of my projects, so I was happy 
 
 First let's create a simple `LocationEntity` which will be stored in MongoDB. For the sake of brevity I left out the getters/setters/equals/hashcode, you can find the full source on [GitHub](https://github.com/drissamri/blog-examples/blob/master/spring-data-mongodb-geospatial/src/main/java/be/drissamri/locations/repository/domain/LocationEntity.java):
 
+_LocationEntity.java_
 {% highlight java %}
 @Document(collection = "locations")
 public class LocationEntity {
@@ -101,6 +102,7 @@ public class LocationEntity {
 
 Next we need a Spring Repository that will actually query for all locations for a certain subject and a proximity near a location. This is where all the heavy lifting (magic?) has to happen.
 
+_LocationRepository_
 {% highlight java %}
 public interface LocationRepository extends MongoRepository<LocationEntity, String> {
 
@@ -114,6 +116,7 @@ That's all you need, Spring Data will take care of everything based on the metho
 ## Implementing REST endpoints
 As we defined before, we'll need to two endpoints to retrieve the locations based on the repository that we just created and also create new LocationEntity entries. Let's start with retrieving the locations:
 
+_LocationResource.java_
 {% highlight java %}
 @RestController
 public class LocationResource {
@@ -138,6 +141,7 @@ Spring gives you a nice `RestController` annotation that will make sure all the 
 
 Next, we want to add locations for a certain subject
 
+_LocationResource.java_
 {% highlight java %}
   @RequestMapping(method = RequestMethod.POST)
   @ResponseStatus(HttpStatus.CREATED)
@@ -160,6 +164,6 @@ Next, we want to add locations for a certain subject
 
 The `LocationEntry` POJO is an object that only contains latitude and longitude, since that's all we need for a location that will be added. Based on this POJO we created a new `GeoJsonPoint` to store it in MongoDB.
 
-With these few steps I was able to create a Geosptial Location based API prototype within a few hours, mostly spent on doing research on MongoDB and Spring Data MongoDB capabilities. I'm happy that I now know MongoDB is capable of quite a bit of Geospatial things, and that it is quite easy to use as well.
+With these few steps I was able to create a Geospatial Location based API prototype within a few hours, mostly spent on doing research on MongoDB and Spring Data MongoDB capabilities. I'm happy that I now know MongoDB is capable of quite a bit of Geospatial things, and that it is quite easy to use as well.
 
 Hope you learned something new as well! You can find the source code for this example on [GitHub](https://github.com/drissamri/blog-examples/tree/master/spring-data-mongodb-geospatial).
