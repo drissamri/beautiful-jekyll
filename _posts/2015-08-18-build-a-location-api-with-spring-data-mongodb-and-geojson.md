@@ -102,7 +102,7 @@ public class LocationEntity {
 
 Next we need a Spring Repository that will actually query for all locations for a certain subject and a proximity near a location. This is where all the heavy lifting (magic?) has to happen.
 
-_LocationRepository_
+_LocationRepository.java_
 {% highlight java %}
 public interface LocationRepository extends MongoRepository<LocationEntity, String> {
 
