@@ -82,14 +82,19 @@
         {% include subscribe.html %}
 
         <p class="copyright text-muted">
-          &copy; {{ site.author.name }} &nbsp;&bull;&nbsp; {{ site.time | date: '%Y' }} {% if site.url-pretty %} &nbsp;&bull;&nbsp;
-          <a href="{{ site.url }}">{{ site.url-pretty }}</a>
-          {% endif %}
-        </p>
-        <p class="theme-by text-muted">
-          Theme by
-          <a href="https://github.com/daattali/beautiful-jekyll">beautiful-jekyll</a>
-        </p>
+		  &copy; {{ site.author.name }}
+		  &nbsp;&bull;&nbsp;
+		  {{ site.time | date: '%Y' }}
+		  
+		  {% if site.url-pretty %}
+		  &nbsp;&bull;&nbsp;
+		  <a href="{{ site.url }}">{{ site.url-pretty }}</a>
+		  {% endif %}
+	    </p>
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="https://github.com/daattali/beautiful-jekyll">beautiful-jekyll</a>
+		</p>
       </div>
     </div>
   </div>
