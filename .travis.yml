@@ -1,7 +1,8 @@
-sudo: true
 language: ruby
 rvm:
 - 2.1
+sudo: false
+cache: bundler
 script: jekyll build
 deploy:
   provider: cloudfoundry
