@@ -2,7 +2,7 @@ sudo: true
 language: ruby
 rvm:
 - 2.1
-script: jekyll build ./_site
+script: jekyll build
 deploy:
   provider: cloudfoundry
   edge: true
