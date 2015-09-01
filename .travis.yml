@@ -1,0 +1,13 @@
+sudo: true
+language: ruby
+rvm:
+- 2.1
+script: jekyll build ./_site
+deploy:
+  provider: cloudfoundry
+  edge: true
+  api: https://api.eu-gb.bluemix.net
+  username: $CF_USER
+  password: $CF_PASS
+  organization: $CF_ORG
+  space: prod

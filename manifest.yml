@@ -1,0 +1,9 @@
+---
+applications:
+- name: drissamri.be
+  stack: cflinuxfs2
+  memory: 64M
+  host: drissamri-prd
+  buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
+  env:
+   FORCE_HTTPS: true
