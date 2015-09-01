@@ -90,6 +90,7 @@ exclude:
   - CNAME
   - LICENSE
   - README.md
-
+  - vendor/
 keep_files:
   - manifest.yml
+
