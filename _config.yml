@@ -86,11 +86,7 @@ defaults:
       layout: "default"
 
 # Exclude these files from production site
-exclude:
-  - CNAME
-  - LICENSE
-  - README.md
-  - vendor/
+exclude: [vendor, CNAME, LICENSE, README.md]
 keep_files:
   - manifest.yml
 
