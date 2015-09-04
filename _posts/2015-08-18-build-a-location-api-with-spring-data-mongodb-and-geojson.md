@@ -29,6 +29,15 @@ The technologies for this prototype are:
  * Spring Data MongoDB
  * Gradle
 
+## Create a MongoDB database and add spatial index
+If you installed MongoDB commandline, define your database and create an index:
+
+{% highlight bash %}
+use locations
+db.locations.createIndex( { location : "2dsphere" } )
+{% endhighlight %}
+
+
 ## Generate a basic project
 Head over to [Spring Initializer](https://start.spring.io/), or if you are using IntelliJ you can just choose to create a new Spring Boot application, and choose Spring Web, Spring Data MongoDB and Gradle. You should end up with a `build.gradle` something along the lines of:
 
