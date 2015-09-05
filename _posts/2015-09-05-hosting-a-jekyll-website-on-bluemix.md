@@ -2,7 +2,7 @@
 layout: post
 title: Hosting a Jekyll website on Bluemix
 author: Driss Amri
-date: 2015-09-02
+date: 2015-09-05
 tags:
  - Jekyll
  - Bluemix
