@@ -105,7 +105,7 @@ Now your application should be available on `https://YOURHOST.mybluemix.net`.
 
 I want my site to be available on `drissamri.be` and `www.drissamri.be`. There's a few easy steps to do to accomplish this. If you are OK with using the default Bluemix URL of your application or you don't have a custom domain, you can skip these steps.
 
-First you will have define your domain in Bluemix. Create the domain in Bluemix and associate it with an organization, in my case it's `called drissamri.`
+First you will have to define your domain in Bluemix. Create the domain in Bluemix and associate it with an organization, in my case it's `called drissamri.`
 
 {% highlight bash %}
 cf create-domain drissamri drissamri.be
@@ -122,9 +122,9 @@ cf map-route drissamri.be www.drissamri.be
 ### Enable SSL ###
 
 One of the reasons of moving my blog was to be able to enable and force SSL on my site.
-I already have a SSL certifcate for my website, if you need one I can recommend [SSLMate](https://sslmate.com/). By the time you are reading this, it might be worth checking out [letsencrypt.org](https://letsencrypt.org/) if they are already issueing certificates.
+I already have a SSL certificate for my website, if you need one I can recommend [SSLMate](https://sslmate.com/). By the time you are reading this, it might be worth checking out [letsencrypt.org](https://letsencrypt.org/) if they are already issueing certificates.
 
-Unfortunately as far as I know, you can't manage certificates with the Cloud Foundry CLI, so you'll have to switch over to the Bluemix website. Navigate to the `Manage Organzations` and go to the `Domains` tab. Here you should see your newly created domain.
+Unfortunately as far as I know, you can't manage certificates with the Cloud Foundry CLI, so you'll have to switch over to the Bluemix website. Navigate to the `Manage Organizations` and go to the `Domains` tab. Here you should see your newly created domain.
 
 ![Bluemix domains]({{ site.url }}/img/post/bluemix-domains.png)
 
