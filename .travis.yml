@@ -2,23 +2,22 @@ language: ruby
 rvm:
 - 2.1
 
-sudo: false
-cache: bundler
+#cache: bundler
 
 script:
-  - bundle exec jekyll build
+  -  jekyll build
 #  - bundle exec htmlproof ./_site
 
 
 deploy:
   provider: cloudfoundry
   edge: true
-  api: https://api.eu-gb.bluemix.net
+  api: $CF_API
   username: $CF_USER
   password: $CF_PASS
   organization: $CF_ORG
-  space: prod
+  space: $CF_ENV
 
-env:
-  global:
-  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
+#env:
+#  global:
+#  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
