@@ -6,7 +6,7 @@ rvm:
 
 script:
   -  jekyll build
-#  - bundle exec htmlproof ./_site
+  -  htmlproof ./_site
 
 
 deploy:
