@@ -6,7 +6,7 @@ cache: bundler
 
 script:
   -  jekyll build
-  -  htmlproof ./_site --href-ignore https://linkedin.com/
+  -  htmlproof ./_site
 
 deploy:
   provider: cloudfoundry
