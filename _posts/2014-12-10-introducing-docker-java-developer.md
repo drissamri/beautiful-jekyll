@@ -7,7 +7,7 @@ tags:
  - Java
  - Docker
 ---
-![Docker containers]({{ site.url }}/assets/docker.jpeg)
+![Docker containers]({{ site.url }}/img/post/docker.jpeg)
 
 You might have noticed we are currently experiencing a Docker frenzy. Every day there is a new framework or service popping up that is based on Docker. A lot of people have been asking what this Docker thing is all about. I'm going to try to explain what Docker is and see how it it fits into a Java developers ecosystem.
 
@@ -116,4 +116,4 @@ In this example I'm using Spring Boot and an executable jar file. If you are usi
 I hope this has shed a light on the whole Docker hype since it doesn't look like its going away any time soon.
 
 You can find the source for the Linkshortener application and the Dockerfile on [GitHub](https://github.com/drissamri/linkshortener/tree/blog-docker-for-java).
-You can learn how to deploy Docker containers on IBM BlueMix PaaS in my other [blog post](http://www.drissamri.be/blog/continuous-delivery/docker-on-bluemix/ "Deploy Docker on BlueMix").
+You can learn how to deploy Docker containers on IBM Bluemix PaaS in my other [blog post](http://www.drissamri.be/blog/continuous-delivery/docker-on-bluemix/ "Deploy Docker on Bluemix").

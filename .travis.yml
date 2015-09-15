@@ -6,7 +6,7 @@ rvm:
 
 script:
   -  jekyll build
-  -  htmlproof ./_site
+  -  htmlproof ./_site --href-ignore https://linkedin.com/
 
 deploy:
   provider: cloudfoundry
