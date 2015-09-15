@@ -11,7 +11,7 @@ tags:
  - TravisCI
 ---
 
-You've been reading much about Continuous Integratione and Continuous Deployment and think it only applies to big projects? Think again. A simple site like this website can benefit from it, that is why I will show you how easy it is to set it up for a GitHub project with Travis CI. What I want to achieve is that every Git push will result in an automated deployment of my website on Bluemix. This will only take a few minutes to setup.
+You've been reading much about Continuous Integration and Continuous Deployment and think it only applies to big projects? Think again. A simple site like this website can benefit from it, that is why I will show you how easy it is to set it up for a GitHub project with [Travis CI](https://travis-ci.org/). What I want to achieve is that every Git push will result in an automated deployment of my website on [Bluemix](http://bluemix.net). This will only take a few minutes to setup.
 
 If you are currently using a public GitHub repository then you can also use Travis CI for free! If you don't know Travis CI, it's a hosted Continuous Integration platform that makes it easy to have automated builds for your applications. If you have used Jenkins before, you can compare it with that, only you don't have to install anything since it's an online service so you can just sign up with your GitHub account.
 
@@ -23,8 +23,6 @@ Doing this will mean I can rest assured that Jekyll is able to build my site, th
 
 Head over to [Travis CI](https://travis-ci.org/) and Sign up with you GitHub credentials.
 
-Sign up and add deployment credentials
-
 ![Travis CI sign up]({{ site.url }}/img/post/travis-ci-signup.png)
 
 Next head over to your profile so you can select which reposity you want to enable in TravisCI. In my case this is the repository for this site, the repository is called `drissamri/drissamri.be`. This will enable TravisCI start whenever a commit is pushed to Git.
@@ -33,16 +31,22 @@ Next head over to your profile so you can select which reposity you want to enab
 
 ## Create a Travis CI configuration file ##
 
-You will need to provide Travis CI with instructions on what to do on every commit, this is done by providing a configuration yaml file called `.travis.yml` in the root of your project.  There are [two](http://docs.travis-ci.com/user/deployment/cloudfoundry/) ways to create this file, I chose to create the file manually but you can also install the Travis ruby gem to help you out.
+First let's define a `Gemfile` in the project root folder to define the dependency that is needed to execute Jekyll.
 
-Travis CI works with a `.travisci.yml` file that will have all instructions on what to do when a build is started. Your `.travis.yml` file should look like this:
+{% highlight ruby %}
+source 'https://rubygems.org'
+gem "jekyll"
+{% endhighlight %}
+
+Now you will need to provide Travis CI with instructions on what to do on every commit, this is done by providing a configuration yaml file called `.travis.yml` in the root of your project.  There are [two](http://docs.travis-ci.com/user/deployment/cloudfoundry/) ways to create this file, I chose to create the file manually but you can also install the Travis ruby gem to help you out.
+
+Travis CI works with a `.travis.yml` file that will have all instructions on what to do when a build is started. It should look like this:
 
 {% highlight yaml %}
 language: ruby
 rvm:
 - 2.1
 
-install: gem install jekyll
 script: bundle exec jekyll build
 
 branches:
@@ -75,11 +79,10 @@ rvm:
 RVM is a popular Ruby Version Manager (like rbenv, chruby, etc). This directive tells Travis the Ruby version to use when running your test script.
 
 {% highlight yaml %}
-install: gem install jekyll
 script: bundle exec jekyll build
 {% endhighlight %}
 
-Install the Jekyll gem in the runtime and execute it to build the static website
+This will run the Jekyll build command to generate the static website.
 
 {% highlight yaml %}
 branches:
@@ -105,9 +108,10 @@ Travis CI works with the notion of deploy providers to deploy to different platf
 
 We are using environment variables (`$CF_API`, `$CF_USER`, `$CF_PASS`, `$CF_ORG` and`$CF_ENV`) that we still need to define since we don't want our credentials to be available in cleartext in a file that is available on GitHub. Always externalize sensitive information!
 
+
 ## Securely set environment variable in Travis CI ##
 
-Login to Travis CI and go your repository settings.
+Login to Travis CI and go your repository settings:
 
 ![Travis CI environment variables]({{ site.url }}/img/post/travis-ci-environment.png)
 
@@ -122,10 +126,16 @@ Now you should be good to go, on your next Git push you should be able to see th
 
 Now that our deployment is automated, we'll take it one step further. On each Git push I want to make sure that all links and images on my website are actually still valid. It's possible by moving content or images around that links break. Also external links might be unavailable over time. This is easily achieved by using [html-proofer](https://github.com/gjtorikian/html-proofer).
 
-All we have to do is add an extra script to our `.travisci.yml` file.
+Add an extra Ruby gem for the `html-proofer` in the `Gemfile`:
+{% highlight ruby %}
+source 'https://rubygems.org'
+gem "jekyll"
+gem "html-proofer"
+{% endhighlight %}
+
+All that is left to do is add an extra script to our `.travis.yml` file.
 
 {% highlight yaml %}
-install: gem install jekyll
 script:
   - bundle exec jekyll build
   - bundle exec htmlproof ./_site
@@ -134,12 +144,12 @@ script:
 
 Jekyll build will make sure that my site is generated under `./_site`, so the following step is to run `htmlproof` on the generated site. If you have any broken links on your site, the build will fail and tell you which links you need to fix. Since the build will fail, the deployment step will not be executed.
 
-There two optimalizations you can do to speed up the build. One is to use the [caching mechanism](http://docs.travis-ci.com/user/caching/) of Travis CI to store your dependencies. This can be done by adding `cache: bundler
-` to your `.travisci.yml`. The other is to set an environment variable `NOKOGIRI_USE_SYSTEM_LIBRARIES` to `TRUE`. This is mentioned in the html-proofer [GitHub](https://github.com/gjtorikian/html-proofer) and in the Jekyll [documentation](https://jekyllrb.com/docs/continuous-integration/).
+There two optimalizations you can do to speed up the build. One is to use the Travis CI [caching mechanism](http://docs.travis-ci.com/user/caching/) to store your dependencies. This can be done by adding `cache: bundler
+` to your `.travis.yml`. The other is to set an environment variable `NOKOGIRI_USE_SYSTEM_LIBRARIES` to `TRUE`. This is mentioned in the html-proofer [GitHub](https://github.com/gjtorikian/html-proofer) and in the Jekyll [documentation](https://jekyllrb.com/docs/continuous-integration/).
 
 ## Learn more ##
 
-If you got this far, well done! You have just saved you some minutes for every deploy you will do! If you ran into some issues, feel free to let me know in the comments or on [Twitter](https://twitter.com/drams88).
+If you got this far, well done! You have just saved you some minutes for every future deployment! If you ran into issues, feel free to let me know in the comments or on [Twitter](https://twitter.com/drams88).
 
 <div class="alert alert-info" role="alert">
   Are you interested in learning more about Cloud Foundry and Bluemix? Have questions or problems? Feel free to drop in the unofficial Bluemix Devs Slack channel to come chat with other developers! You can join <a href="http://bluemixdevs.mybluemix.net/" class="alert-link">HERE</a>
