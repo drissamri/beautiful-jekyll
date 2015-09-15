@@ -5,8 +5,8 @@ rvm:
 cache: bundler
 
 script:
-  -  jekyll build
-  -  htmlproof ./_site
+  - bundle exec jekyll build
+  - bundle exec htmlproof ./_site
 
 deploy:
   provider: cloudfoundry
