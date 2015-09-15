@@ -15,9 +15,9 @@ You've been reading much about Continuous Integration and Continuous Deployment 
 
 If you are currently using a public GitHub repository then you can also use Travis CI for free! If you don't know Travis CI, it's a hosted Continuous Integration platform that makes it easy to have automated builds for your applications. If you have used Jenkins before, you can compare it with that, only you don't have to install anything since it's an online service so you can just sign up with your GitHub account.
 
-Lucky for me, I'm using a public repository for my [website](https://drissamri.be/blog/2015/09/05/hosting-a-jekyll-website-on-bluemix/) so I'm able to try out it out without paying a dime. What I want to accomplish is that each commit on my Git master branch triggers a build in Travis CI. This build will do a couple of things, first it will generate my Jekyll static site, then run [html-proofer](https://github.com/gjtorikian/html-proofer) to see if any of the links on the website are broken and finally deploy the site to [Bluemix](http://bluemix.net). Since Bluemix is based on [Cloud Foundry](https://www.cloudfoundry.org/) this guide will also work for any other provider that uses Cloud Foundry like [Pivotal WebServices](https://run.pivotal.io/), [anynines](http://www.anynines.com/) and so on. I prefer Bluemix because it offers a lot of services and also has a pretty decent free tier. Free GitHub, check. Free Travis CI, check. Free Bluemix, check. Let's do this!
+Luckily for me, I'm using a public repository for my [website](https://drissamri.be/blog/2015/09/05/hosting-a-jekyll-website-on-bluemix/) so I'm able to try out it out without paying a dime. What I want to accomplish is that each commit on my Git master branch triggers a build in Travis CI. This build will do a couple of things, first it will generate my Jekyll static site, then run [html-proofer](https://github.com/gjtorikian/html-proofer) to see if any of the links on the website are broken and finally deploy the site to [Bluemix](http://bluemix.net). Since Bluemix is based on [Cloud Foundry](https://www.cloudfoundry.org/) this guide will also work for any other provider that uses Cloud Foundry like [Pivotal WebServices](https://run.pivotal.io/), [anynines](http://www.anynines.com/) and so on. I prefer Bluemix because it offers a lot of services and also has a pretty decent free tier. Free GitHub, check. Free Travis CI, check. Free Bluemix, check. Let's do this!
 
-Doing this will mean I can rest assured that Jekyll is able to build my site, that all the links in my pages are functional (html-proofer) and that the latest version of my code is always pushed to the Bluemix server. Automating this process wil leave it less error prone and give me more time to actually write content!
+Doing this will mean I can rest assured that Jekyll is able to build my site, that all the links in my pages are functional (html-proofer) and that the latest version of my code is always pushed to the Bluemix server. Automating this process will leave it less error prone and give me more time to actually write content!
 
 ## Sign up for Travis CI ##
 
@@ -25,7 +25,7 @@ Head over to [Travis CI](https://travis-ci.org/) and Sign up with you GitHub cre
 
 ![Travis CI sign up]({{ site.url }}/img/post/travis-ci-signup.png)
 
-Next head over to your profile so you can select which reposity you want to enable in TravisCI. In my case this is the repository for this site, the repository is called `drissamri/drissamri.be`. This will enable TravisCI start whenever a commit is pushed to Git.
+Next head over to your profile so you can select which repository you want to enable in TravisCI. In my case this is the repository for this site, the repository is called `drissamri/drissamri.be`. This will enable TravisCI start whenever a commit is pushed to Git.
 
 ![Travis CI sign up]({{ site.url }}/img/post/travis-ci-enable-repository.png)
 
@@ -38,7 +38,7 @@ source 'https://rubygems.org'
 gem "jekyll"
 {% endhighlight %}
 
-Now you will need to provide Travis CI with instructions on what to do on every commit, this is done by providing a configuration yaml file called `.travis.yml` in the root of your project.  There are [two](http://docs.travis-ci.com/user/deployment/cloudfoundry/) ways to create this file, I chose to create the file manually but you can also install the Travis ruby gem to help you out.
+Now you will need to provide Travis CI with instructions on what to do on every commit, this is done by providing a configuration yaml file called `.travis.yml` in the root of your project. There are [two](http://docs.travis-ci.com/user/deployment/cloudfoundry/) ways to create this file, I chose to create the file manually but you can also install the Travis ruby gem to help you out.
 
 Travis CI works with a `.travis.yml` file that will have all instructions on what to do when a build is started. It should look like this:
 
@@ -144,7 +144,7 @@ script:
 
 Jekyll build will make sure that my site is generated under `./_site`, so the following step is to run `htmlproof` on the generated site. If you have any broken links on your site, the build will fail and tell you which links you need to fix. Since the build will fail, the deployment step will not be executed.
 
-There two optimalizations you can do to speed up the build. One is to use the Travis CI [caching mechanism](http://docs.travis-ci.com/user/caching/) to store your dependencies. This can be done by adding `cache: bundler
+There are two optimalizations you can do to speed up the build. One is to use the Travis CI [caching mechanism](http://docs.travis-ci.com/user/caching/) to store your dependencies. This can be done by adding `cache: bundler
 ` to your `.travis.yml`. The other is to set an environment variable `NOKOGIRI_USE_SYSTEM_LIBRARIES` to `TRUE`. This is mentioned in the html-proofer [GitHub](https://github.com/gjtorikian/html-proofer) and in the Jekyll [documentation](https://jekyllrb.com/docs/continuous-integration/).
 
 ## Learn more ##
