@@ -32,7 +32,7 @@ To get started rapidly with Spring boot you can hop over to their [Initializr ap
 
 It is interesting to see that you can choose to do a web application and package it as a .jar file. If you choose this path, Spring will launch an embedded container (default Tomcat) which makes it much easier to debug your application straight in your IDE without configuring a container. Forget about starting up your application server and deploying to it, you can just right click your application and click on "**Run**"
 
-![Spring Initializr Application](http://www.drissamri.be/wp-content/uploads/2014/11/spring-initializr.jpg)
+![Spring Initializr Application]({{ site.url }}/img/post/spring-initializr.jpg)
 
 When you are done filling in details about your application, you can download the bootstrapped application. This will give you a Maven project following the standard conventions.
 
@@ -40,59 +40,59 @@ There are a few things to point out. In the pom.xml two things will stand out, f
 
 **pom.xml**
 {% highlight xml %}
- <!-- Inherit defaults from Spring Boot -->  
- <parent>  
-  <groupId>org.springframework.boot</groupId>  
-  <artifactId>spring-boot-starter-parent</artifactId>  
-  <version>1.2.0.M2</version>  
-  <relativePath/>  
+ <!-- Inherit defaults from Spring Boot -->
+ <parent>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-parent</artifactId>
+  <version>1.2.0.M2</version>
+  <relativePath/>
  </parent>
 
-<build>  
- <plugins>  
-  <plugin>  
-  <groupId>org.springframework.boot</groupId>  
-  <artifactId>spring-boot-maven-plugin</artifactId>  
- </plugin>  
-</build>  
+<build>
+ <plugins>
+  <plugin>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-maven-plugin</artifactId>
+ </plugin>
+</build>
 {% endhighlight %}
 
 There's also an `Application.java` which has a main method, this is the entry point for our application. When you run this class the embedded Tomcat will start up. This works out of the box, only there isn't any content to serve yet so this doesn't do much yet. The `@Configuration` and `@ComponentScan` we already know from any other Spring application, the only new thing here is the `@EnableAutoConfiguration` annotation which is specific to Spring Boot. This annotation will try to auto configure as much as possible, also depending on what dependencies it finds on the classpath. If you have the HSQLDB as a maven dependency, it will auto configure a embedded HSQLDB database with default settings. This feature works for a lot dependencies, but of course you can always inject your Spring beans to have complete control. You can also just customize the existing auto configured beans by using the default application.properties file. The [Spring documentation](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/) is pretty extensive so make sure to take a look.
 
 **Application.java**
 {% highlight java %}
-@Configuration  
-@ComponentScan  
-@EnableAutoConfiguration  
+@Configuration
+@ComponentScan
+@EnableAutoConfiguration
 public class Application {
 
-public static void main(String[] args) {  
- SpringApplication.run(Application.class, args);  
- }  
-}  
+public static void main(String[] args) {
+ SpringApplication.run(Application.class, args);
+ }
+}
 {% endhighlight %}
 
 ### Going for a test run
 
 Let us add a simple Controller that will act as a REST endpoint for our application just to see that we can actually start this up as an application and see some sort of output. We will annotate the controller with the Spring 4 `@RestController` annotation that basically annotates all methods with `@ResponseBody` to specify that we'll be returning JSON objects.
 
-**LinkController.java**  
+**LinkController.java**
 {% highlight java %}
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;  
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
-@RestController  
-@RequestMapping(LinkController.LINKS)  
-public class LinkController {  
+@RestController
+@RequestMapping(LinkController.LINKS)
+public class LinkController {
 public static final String LINKS = "/links";
 
-@RequestMapping(method = GET, produces = APPLICATION_JSON_VALUE)  
- public ResponseEntity<String> find() {  
+@RequestMapping(method = GET, produces = APPLICATION_JSON_VALUE)
+ public ResponseEntity<String> find() {
   String result = "Welcome to Spring Boot";
 
-  return ResponseEntity.ok().body(result);  
- }  
-}  
+  return ResponseEntity.ok().body(result);
+ }
+}
 {% endhighlight %}
 
 As soon as you've done this, you can go to the Application.java and right click on it and choose to **Run** it directly from your IDE. If you open your browser and go to `http://localhost:8080/links` you'll see the output `Welcome to Spring boot`.

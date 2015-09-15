@@ -139,7 +139,7 @@ Now Bluemix knows about your domain and your certificate, but the actual forward
 
 ![Domain DNS setup]({{ site.url }}/img/post/cloudflare-dns.png)
 
-One last thing, if you want to force SSL usage of your site on HTTPS, you have to add another property to your `manifest.yml`. This is a feature of the [staticfile-buildpack](http://github.com/staticfile-buildpack) that we defined for our application.
+One last thing, if you want to force SSL usage of your site on HTTPS, you have to add another property to your `manifest.yml`. This is a feature of the [staticfile-buildpack](https://github.com/cloudfoundry/staticfile-buildpack) that we defined for our application.
 
 {% highlight yaml %}
 env:

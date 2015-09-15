@@ -40,9 +40,7 @@ Apparently since the demand for this beta service is currently very high, you mi
 
 ### Step 3: Install the command line tools
 
-To manage and start your containers you'll be working with ICE, a command line tool. Download and extract the [icecli](https://static-ice.ng.Bluemix.net/icecli-1.0.zip).
-
- `NOTE:` this link refers to version 1.0, make sure you check the [IBM Containers documentation](http://www.stage1.ng.Bluemix.net/docs/#starters/index-gentopic3.html#containers) for the latest version
+To manage and start your containers you'll be working with ICE, a command line tool. Download and extract the [icecli]https://www.ng.bluemix.net/docs/containers/container_cli_ov.html).
 
 Now use pip to install the **icecli-1.0**, this might require root privileges:
 {% highlight bash %}
@@ -96,9 +94,9 @@ When thats done you can check its status by running **ice ps**. Now we want to m
  ice ip bind 129.41.248.102 linkshortener
  {% endhighlight %}
 
-At this point, give the container a bit of time to fully initialize, but the service should be up and running shortly. My service is accessible on [http://129.41.248.102:9080/links](http://129.41.248.102:9080/links). If you got this far, you successfully deployed your Docker on Bluemix!
+At this point, give the container a bit of time to fully initialize, but the service should be up and running shortly. My service is accessible on `http://129.41.248.102:9080/links`. If you got this far, you successfully deployed your Docker on Bluemix!
 
-You might have noticed that the ice commands are just a wrapper around the Docker command line interface and most functionality is available. If you run into problems just append the --help` parameter to your command or check out the [documentation](https://www.ng.Bluemix.net/docs/#starters/index-gentopic3.html).
+You might have noticed that the ice commands are just a wrapper around the Docker command line interface and most functionality is available. If you run into problems just append the --help` parameter to your command or check out the [documentation](https://www.ng.bluemix.net/docs/containers/container_index.html).
 
 ## Remarks
 

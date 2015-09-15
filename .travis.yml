@@ -8,7 +8,6 @@ script:
   -  jekyll build
   -  htmlproof ./_site
 
-
 deploy:
   provider: cloudfoundry
   edge: true
