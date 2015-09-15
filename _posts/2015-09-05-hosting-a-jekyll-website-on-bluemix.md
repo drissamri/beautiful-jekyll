@@ -14,7 +14,7 @@ As you might [know](https://www.drissamri.be/blog/2015/05/17/drissamri-home-v2/)
 
 
 GitHub Pages in combination with Jekyll is a simple yet powerful tool to build and serve static websites.
-However, by default you website will be located at username.github.io, e.g., [http://drissamri.github.io](http://drissamri.github.io) for this page. Generously, GitHub provides means to add a custom domain to your GitHub Page.
+However, by default you website will be located at username.github.io, e.g., `http://drissamri.github.io` for this page. Generously, GitHub provides means to add a custom domain to your GitHub Page.
 
 There are a few limitations, but for me the only limitation that was bothering me that there is currently no support for SSL on custom domains. You can partly work around this problem by using a service like CloudFlare, although it won't give end-to-end SSL it is definitely better than using no SSL.
 

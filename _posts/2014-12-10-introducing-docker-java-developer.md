@@ -7,7 +7,7 @@ tags:
  - Java
  - Docker
 ---
-![Docker containers]({{ site.url }}/assets/docker-1024x576.jpeg)
+![Docker containers]({{ site.url }}/assets/docker.jpeg)
 
 You might have noticed we are currently experiencing a Docker frenzy. Every day there is a new framework or service popping up that is based on Docker. A lot of people have been asking what this Docker thing is all about. I'm going to try to explain what Docker is and see how it it fits into a Java developers ecosystem.
 
@@ -47,7 +47,7 @@ To get started we add a file called **Dockerfile** into the root of our maven pr
 
 I have chosen to base my image on the public [dockerfile/java](https://registry.hub.docker.com/u/dockerfile/java/) which has several versions, called tags, available. The tag we will be using has the Oracle JDK 8 installed in a [Ubuntu](https://github.com/dockerfile/ubuntu) environment. This is done by using the `FROM` keyword and refering to the Docker image name:tag we want to use. The tag version is optional, but if you don't specify it will just take the latest available version which can lead to an unreproducible build.
 
-**Dockerfile**  
+**Dockerfile**
  {% highlight docker %}
  FROM dockerfile/java:oracle-java8
 
@@ -115,5 +115,5 @@ In this example I'm using Spring Boot and an executable jar file. If you are usi
 
 I hope this has shed a light on the whole Docker hype since it doesn't look like its going away any time soon.
 
-You can find the source for the Linkshortener application and the Dockerfile on [GitHub](https://github.com/drissamri/linkshortener/tree/blog-docker-for-java).  
+You can find the source for the Linkshortener application and the Dockerfile on [GitHub](https://github.com/drissamri/linkshortener/tree/blog-docker-for-java).
 You can learn how to deploy Docker containers on IBM BlueMix PaaS in my other [blog post](http://www.drissamri.be/blog/continuous-delivery/docker-on-bluemix/ "Deploy Docker on BlueMix").
