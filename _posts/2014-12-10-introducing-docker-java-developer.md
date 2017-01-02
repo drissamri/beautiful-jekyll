@@ -48,7 +48,7 @@ To get started we add a file called **Dockerfile** into the root of our maven pr
 I have chosen to base my image on the public [dockerfile/java](https://registry.hub.docker.com/u/dockerfile/java/) which has several versions, called tags, available. The tag we will be using has the Oracle JDK 8 installed in a [Ubuntu](https://github.com/dockerfile/ubuntu) environment. This is done by using the `FROM` keyword and refering to the Docker image name:tag we want to use. The tag version is optional, but if you don't specify it will just take the latest available version which can lead to an unreproducible build.
 
 **Dockerfile**
- {% highlight docker %}
+ {% highlight bash %}
  FROM dockerfile/java:oracle-java8
 
 MAINTAINER Driss Amri

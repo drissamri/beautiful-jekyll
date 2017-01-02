@@ -1,4 +1,4 @@
-# --- Serving options --- #
+# --- General options --- #
 
 # url is the full website URL
 # baseurl is the website's URL without the hostname
@@ -6,6 +6,12 @@
 # If you are building a simple GitHub user page (username.github.io) then use these settings:
 url: "https://drissamri.be"
 baseurl: ""
+
+# If you are building a GitHub project page then use these settings:
+#url: "http://username.github.io/projectname"
+#baseurl: "/projectname"
+
+# Of course don't forget to change the username and projectname to YOUR username and project
 
 # Name of website
 title: Driss Amri
@@ -34,10 +40,15 @@ author:
   email: "hello@drissamri.be"
   facebook: driss.amri
   github: drissamri
-  bitbucket: drissamri
   twitter: drams88
   linkedin: in/drissamri
   stackoverflow: users/492723/driss-amri
+  #instagram: yourname 
+  # snapchat: yourname  
+  # youtube: yourlink 
+  # spotify: yourname
+  # xing: yourname  
+  # google-plus: +yourname  
 
 # Select which links to show in the footer
 footer-links-active:
@@ -46,9 +57,21 @@ footer-links-active:
   email: true
   twitter: true
   github: true
-  bitbucket: true
   linkedin: true
   stackoverflow: true
+  google-plus: false
+  xing: false
+  snapchat: false
+  instagram: false
+  youtube: false
+  spotify: false
+
+# Select which share links to show in posts
+share-links-active:
+  twitter: true
+  facebook: true
+  google: false
+  linkedin: true
 
 # How to display the link to the website in the footer
 # Remove this if you don't want a link in the footer
@@ -62,14 +85,20 @@ disqus: "drissamri"
 # Fill in your Google Analytics ID to track your website using GA
 google_analytics: "UA-62990349-1"
 
+# Facebook App ID
+# fb_app_id: ""
+
 # --- Don't need to touch anything below here (but you can if you want) --- #
 
 # Output options (more information on Jekyll's site)
 timezone: "Europe/Brussels"
 markdown: kramdown
 highlighter: pygments
-permalink: /blog/:year/:month/:day/:title
+permalink: /:year-:month-:day-:title
 paginate: 5
+
+kramdown:
+  input: GFM
 
 # Default YAML values (more information on Jekyll's site)
 defaults:
@@ -78,15 +107,76 @@ defaults:
       path: ""
       type: "posts"
     values:
+      layout: "post"
       comments: true  # add comments to all blog posts
+      social-share: true # add social media sharing buttons to all blog posts
   -
     scope:
       path: "" # all files
     values:
-      layout: "default"
+      layout: "page"
+      show-avatar: true
+
+# Use tags pages (not recommended if you are deploying via GitHub pages, only set to true if deploying locally with ruby)
+link-tags: false
 
 # Exclude these files from production site
-exclude: [vendor, CNAME, LICENSE, README.md]
-keep_files:
-  - manifest.yml
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - CNAME
+  - Vagrantfile
 
+# prose.io config
+prose:
+  rooturl: '_posts'
+  media: 'img'
+  ignore:
+    - 404.html
+    - LICENSE
+    - feed.xml
+    - _config.yml
+    - /_layouts
+    - /_includes
+    - /css
+    - /img
+    - /js
+  metadata:
+    _posts:
+      - name: "layout"
+        field:
+          element: "hidden"
+          value: "post"
+      - name: "title"
+        field:
+          element: "text"
+          label: "Post title"
+          placeholder: "Title"
+          alterable: true
+      - name: "subtitle"
+        field:
+          element: "textarea"
+          label: "Subtitle"
+          placeholder: "A description of your post."
+          alterable: true
+      - name: "date"
+        field:
+          element: "text"
+          label: "Date"
+          help: "Enter date of post."
+          placeholder: "yyyy-mm-dd"
+          alterable: true
+      - name: "published"
+        field:
+          element: "checkbox"
+          label: "Publish"
+          help: "Check to publish post, uncheck to hide."
+
+gems:
+  - jekyll-paginate
+  - jekyll-gist
+
+# Beautiful Jekyll / Dean Attali
+# 2fc73a3a967e97599c9763d05e564189

@@ -11,25 +11,10 @@ common-js:
   - "/js/jquery-1.11.2.min.js"
   - "/js/bootstrap.min.js"
   - "/js/main.js"
-  - "/js/https-redirect.js"
 ---
 
-<!DOCTYPE html>
-<html lang="en">
+<div class="intro-header"></div>
 
-  {% include head.html %}
-
-  <body>
-
-    {% include nav.html %}
-
-    <div role="main" class="container main-content">
-      {{ content }}
-    </div>
-
-    {% include footer.html %}
-
-    {% include footer-scripts.html %}
-
-  </body>
-</html>
+<div role="main" class="container">
+  {{ content }}
+</div>
