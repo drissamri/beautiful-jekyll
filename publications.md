@@ -6,6 +6,10 @@ permalink: /publications/
 
 ## Talks
 
+[Introduction to JHipster](https://speakerdeck.com/drissamri/introduction-to-jhipster)
+This talk was given at Hogeschool UC Leuven-Limburg (UCCL). An introduction to JHipster for modern web development with Java.
+19/09/2015 
+
 [Web App Security - OWASP Top 10 2013](https://speakerdeck.com/drissamri/web-app-security-owasp-top-10-2013)
   This talk was given during a Optis team meeting. Shared information about the OWASP 2013 Top 10 security risks and possible solutions.
 05/12/2013

@@ -7,5 +7,4 @@ gem 'therubyracer'
 
 gem 'github-pages'
 gem 'jekyll-paginate'
-gem 'pygments.rb'
 gem 'jekyll-gist'

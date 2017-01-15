@@ -42,7 +42,7 @@ author:
   github: drissamri
   twitter: drams88
   linkedin: in/drissamri
-  stackoverflow: users/492723/driss-amri
+  stackoverflow: 492723/driss-amri
   #instagram: yourname 
   # snapchat: yourname  
   # youtube: yourlink 
@@ -93,12 +93,14 @@ google_analytics: "UA-62990349-1"
 # Output options (more information on Jekyll's site)
 timezone: "Europe/Brussels"
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 permalink: /:year-:month-:day-:title
 paginate: 5
 
 kramdown:
   input: GFM
+  syntax_highlighter: rouge
+
 
 # Default YAML values (more information on Jekyll's site)
 defaults:

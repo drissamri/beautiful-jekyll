@@ -33,16 +33,16 @@ Next head over to your profile so you can select which repository you want to en
 
 First let's define a `Gemfile` in the project root folder to define the dependency that is needed to execute Jekyll.
 
-{% highlight ruby %}
+```ruby
 source 'https://rubygems.org'
 gem "jekyll"
-{% endhighlight %}
+```
 
 Now you will need to provide Travis CI with instructions on what to do on every commit, this is done by providing a configuration yaml file called `.travis.yml` in the root of your project. There are [two](http://docs.travis-ci.com/user/deployment/cloudfoundry/) ways to create this file, I chose to create the file manually but you can also install the Travis ruby gem to help you out.
 
 Travis CI works with a `.travis.yml` file that will have all instructions on what to do when a build is started. It should look like this:
 
-{% highlight yaml %}
+```yaml
 language: ruby
 rvm:
 - 2.1
@@ -61,39 +61,39 @@ deploy:
   password: $CF_PASS
   organization: $CF_ORG
   space: $CF_ENV
-{% endhighlight %}
+```
 
 Let's dig a little deeper:
 
-{% highlight yaml %}
+```yaml
 language: ruby
-{% endhighlight %}
+```
 
 This line tells Travis to use a Ruby build container. It gives your script access to Bundler, RubyGems, and a Ruby runtime.
 
-{% highlight yaml %}
+```yaml
 rvm:
 - 2.1
-{% endhighlight %}
+```
 
 RVM is a popular Ruby Version Manager (like rbenv, chruby, etc). This directive tells Travis the Ruby version to use when running your test script.
 
-{% highlight yaml %}
+```yaml
 script: bundle exec jekyll build
-{% endhighlight %}
+```
 
 This will run the Jekyll build command to generate the static website.
 
-{% highlight yaml %}
+```yaml
 branches:
   only:
     - master
-{% endhighlight %}
+``
 
 This will make sure Travis is only activated when a commit is pushed to the master branch.
 The entry is completely optional. Travis will build from every push to any branch of your repo if leave it out.
 
-{% highlight yaml %}
+```yaml
 deploy:
   provider: cloudfoundry
   edge: true
@@ -102,7 +102,7 @@ deploy:
   password: $CF_PASS
   organization: $CF_ORG
   space: $CF_ENV
-{% endhighlight %}
+```
 
 Travis CI works with the notion of deploy providers to deploy to different platform. You can read more about them [here](http://docs.travis-ci.com/user/deployment/). Since Bluemix is based on Cloud Foundry we can use the Cloud Foundry deployment provider. If you don't have an account yet, or don't know how to get up and running with Jekyll with Bluemix then definitely check out my previous post about running [Jekyll on Bluemix]([website](https://drissamri.be/blog/2015/09/05/hosting-a-jekyll-website-on-bluemix/)).
 
@@ -127,19 +127,19 @@ Now you should be good to go, on your next Git push you should be able to see th
 Now that our deployment is automated, we'll take it one step further. On each Git push I want to make sure that all links and images on my website are actually still valid. It's possible by moving content or images around that links break. Also external links might be unavailable over time. This is easily achieved by using [html-proofer](https://github.com/gjtorikian/html-proofer).
 
 Add an extra Ruby gem for the `html-proofer` in the `Gemfile`:
-{% highlight ruby %}
+```ruby
 source 'https://rubygems.org'
 gem "jekyll"
 gem "html-proofer"
-{% endhighlight %}
+```
 
 All that is left to do is add an extra script to our `.travis.yml` file.
 
-{% highlight yaml %}
+```yaml
 script:
   - bundle exec jekyll build
   - bundle exec htmlproof ./_site
-{% endhighlight %}
+```
 
 
 Jekyll build will make sure that my site is generated under `./_site`, so the following step is to run `htmlproof` on the generated site. If you have any broken links on your site, the build will fail and tell you which links you need to fix. Since the build will fail, the deployment step will not be executed.
