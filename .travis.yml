@@ -4,10 +4,9 @@ rvm:
 
 cache: bundler
 
-install: gem install html-proofer
+install: gem install jekyll html-proofer 
 
-script:
-  - bundle exec jekyll build && htmlproof ./_site
+script: bundle exec jekyll build && htmlproof ./_site
 
 deploy:
   provider: cloudfoundry
