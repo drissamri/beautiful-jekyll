@@ -4,7 +4,7 @@ rvm:
 
 cache: bundler
 
-install: gem install jekyll html-proofer
+install: gem install html-proofer
 
 script:
   - bundle exec jekyll build && htmlproof ./_site
