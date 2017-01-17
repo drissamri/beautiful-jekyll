@@ -3,6 +3,7 @@ layout: post
 title: Continuous Deployment of a Jekyll site on Bluemix with TravisCI
 author: Driss Amri
 date: 2015-09-15
+redirect_from: ["/2015/09/15/continuous-deployment-on-bluemix-with-travisci.html"]
 tags:
  - Jekyll
  - Bluemix

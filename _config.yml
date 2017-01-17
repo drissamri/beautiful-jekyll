@@ -101,6 +101,11 @@ kramdown:
 
 gems:
   - jekyll-gist
+  - jekyll-redirect-from
+
+whitelist:
+  - jekyll-gist
+  - jekyll-redirect-from
 
 # Default YAML values (more information on Jekyll's site)
 defaults:
