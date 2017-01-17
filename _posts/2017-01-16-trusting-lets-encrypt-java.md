@@ -2,7 +2,7 @@
 layout: post
 title: Trusting Let's Encrypt SSL certificate in a Java Spring application
 author: Driss Amri
-date: 2017-01-15
+date: 2017-02-15
 tags:
  - Java
  - SSL
@@ -11,6 +11,32 @@ tags:
  - X509
  - Let's Encrypt
 ---
+
+You are opening a connection to a HTTPS resource that is using a [Let's Encrypt (free)](https://letsencrypt.org/) SSL certificate, like the following example:
+
+```java
+    public void callLetsEncryptEndpointWithHTTPS() {
+      restTemplate.getForEntity("https://valid-isrgrootx1.letsencrypt.org/", String.class);
+    }
+```
+
+This sample code is with Spring's RestTemplate, but this could be the standard JDK HTTP infrastructure, OkHttp, Apache HttpClient or any other framework. The following exception is thrown:
+
+```java
+sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+    at sun.security.provider.certpath.SunCertPathBuilder.engineBuild(SunCertPathBuilder.java:196) ~[na:1.7.0_79]
+    at java.security.cert.CertPathBuilder.build(CertPathBuilder.java:268) ~[na:1.7.0_79]
+    at sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:380) ~[na:1.7.0_79]
+    at sun.security.validator.PKIXValidator.engineValidate(PKIXValidator.java:292) ~[na:1.7.0_79]
+    at sun.security.validator.Validator.validate(Validator.java:260) ~[na:1.7.0_79]
+    at sun.security.ssl.X509TrustManagerImpl.validate(X509TrustManagerImpl.java:326) ~[na:1.7.0_79]
+```
+
+This happens because Let's Encrypt's certificates are pretty recent and not available in all applications and software. In this case, the JDK's truststore `cacerts`does not contain the necessary certificate to open a secure HTTP connection. This truststore is located in `$JAVA_HOME/jre/lib/security/cacerts`. The issue [JDK-8154757](https://bugs.openjdk.java.net/browse/JDK-8154757) was raised to support Let's Encrypt certificates in the JDK and this ticket has been implemented in JDK 7u111+ and JDK 8u101+. If you are getting this issue, it means you are using an older or different version of the JDK.
+
+
+
+
 
 If you are running a site and it is still not using HTTPS, shame on you. There are several reasons why you should start enabling HTTPS, even if you are not transmitting sensitive data. In 2014, Google announced that [HTTPS was a ranking signal](https://webmasters.googleblog.com/2014/08/https-as-ranking-signal.html) for it's search results. Protecting you users data, higher ranked in Google AND that nice green bar infront of your website? What's keeping you, partner? 
 
