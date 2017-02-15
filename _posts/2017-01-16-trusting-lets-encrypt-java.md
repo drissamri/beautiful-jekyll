@@ -14,7 +14,7 @@ tags:
  - Certificate
 ---
 
-You are trying to make a HTTP call to an HTTPS endpoint, that is using `Let's Encrypt` certificate in Java. This example is using Spring's RestTemplate, but this could be plain old Java, OkHttp or any other HTTP client implementation:
+You are trying to make a HTTP call to an HTTPS endpoint, that is using `Let's Encrypt` certificate, in Java. This example is using Spring's RestTemplate, but this could be plain old Java, OkHttp or any other HTTP client implementation:
 
 ```java
  @RunWith(SpringRunner.class)
@@ -42,13 +42,13 @@ sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid
     at sun.security.ssl.X509TrustManagerImpl.validate(X509TrustManagerImpl.java:326) ~[na:1.7.0_79]
 ```
 
-This means that the Java JDK truststore, by default `cacerts` in your `JDK/jre/lib/security` folder,  does not contain the necessary certificate(s) to trust Let's Encrypt. This can happen because Let's Encrypt has not been a Certificate Authority for a long period of time.
+This means that the Java JDK truststore, by default `cacerts` in your `JDK/jre/lib/security` folder,  does not contain the necessary certificate(s) to trust Let's Encrypt. This can happen because Let's Encrypt has not been a Certificate Authority for a long time.
 
-The required `DST Root CA X3` certificate was added with versions JDK 7u111+ and JDK 8u101+, so you're probably using an older or different version of the JDK. You can manually add the necessary certificate(s) in your JDK truststore. You can find the up to date information about the current certificates in the [Let's Encrypt documentation](https://letsencrypt.org/certificates/). At the time of publishing this post, the active root certificate is called `ISRG Root X1.der`. If you are not able to upgrade to a new JDK, you can add the required certificate to you truststore manually or automatically.
+The required `DST Root CA X3` certificate was added with versions JDK 7u111+ and JDK 8u101+, so you're probably using an older or different version of the JDK. You can manually add the necessary certificate(s) in your JDK truststore. You can find the up to date information about the current certificates in the [Let's Encrypt documentation](https://letsencrypt.org/certificates/). At the time of publishing this post, the active root certificate is called `ISRG Root X1.der`. If you are not able to upgrade to a new JDK, you can add the required certificate to you truststore manually or automatically. If you prefer to have more control, you can package a truststore with your application and use that instead of the default JDK truststore.
 
 ## Manually adding a trusted certificate
 
-The `cacerts` truststore that contains all trusted SSL certificates, directly or indirectly through intermediates, contains the certificate to trust the Let's Encrypt certificates. If you are using a version that does not contain this certificate, you can manually update it. 
+The `cacerts` truststore that contains all trusted SSL certificates, directly or indirectly through intermediates, should contains the certificate to trust the Let's Encrypt certificates. If you are using a version that does not contain this certificate, you can manually add it. 
 
 The JDK ships with the `keytool` tool with which you can manipulate and read Java keystores. First download the current `isrgrootx1.der` certificate. Next add this certificate to your JDK `cacerts` truststore:
 
@@ -116,7 +116,9 @@ If you are unable to upgrade the JDK, and not able to modify the server's JDK tr
     }
 ```
 
-First I load in the truststore in memory, then I add it as the truststore in a new SSLContext. Finally I add the SSLContext to the HttpClient
+First I load in the truststore in memory, then I add it as the truststore in a new SSLContext. Finally I add the SSLContext to the HttpClient. 
+
+This way you should not have any problems anymore calling any site that is using Let's Encrypt certificate.
 
 
 
