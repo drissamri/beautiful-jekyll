@@ -69,5 +69,5 @@ If you want to override the default truststore with your own, you can do this in
  
 * Generate self-signed HTTPS certificates
 * Generate Let's Encrypt HTTPS certificates
-* Let's Encrypt certificates in Java cause SunCertPathBuilderException
+* [Let's Encrypt certificates in Java throw SunCertPathBuilderException]({{ site.url }}/blog/2017/02/16/trusting-lets-encrypt-java/)
 * Enabling HTTPS on Cloud Foundry (Bluemix)
