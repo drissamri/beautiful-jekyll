@@ -10,7 +10,9 @@ tags:
  - Security
 ---
 
-If you are running a site and it is still not using HTTPS, shame on you. There are several reasons why you should start enabling HTTPS, even if you are not transmitting sensitive data. In 2014, Google announced that [HTTPS was a ranking signal](https://webmasters.googleblog.com/2014/08/https-as-ranking-signal.html) for it's search results. Protecting your user's data, higher ranked in Google AND that nice green bar infront of your website? On top of that, now [HTTP/2](https://en.wikipedia.org/wiki/HTTP/2) is starting to show up in more platforms which gives users a nice speed increase, it usually is still only supported on HTTPS for now. What's keeping you, partner? 
+If you are running a site and it is still not using HTTPS, shame on you! There are several reasons why you should enable HTTPS, even if you are not transmitting sensitive data. 
+
+In 2014, Google announced that [HTTPS was a ranking signal](https://webmasters.googleblog.com/2014/08/https-as-ranking-signal.html) for it's search results. Protecting your user's data, higher ranked in Google AND that nice green bar infront of your website? On top of that, now [HTTP/2](https://en.wikipedia.org/wiki/HTTP/2) is starting to show up in more platforms which gives users a nice speed increase, it usually is still only supported on HTTPS for now. What's keeping you, partner? 
 
 It used to be expensive and tedious process getting a SSL certificate for your domain. If your site was not dealing with credentials or sensitive personal data you could say it wasn't worth the effort. Nowadays, this is no longer an excuse not to get a certificate. With providers like [SSLMate (paid)](https://www.sslmate) and initiatives like [Let's Encrypt (free)](https://letsencrypt.org/) creating your certificate this a trivial task. Since Let's Encrypt is a fully automated and free solution to get your certificates, a lot of people have started using it.
 
