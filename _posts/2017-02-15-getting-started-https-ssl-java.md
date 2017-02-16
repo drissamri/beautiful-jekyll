@@ -14,7 +14,7 @@ If you are running a site and it is still not using HTTPS, shame on you! Even if
 
 In 2014, Google announced that [HTTPS was a ranking signal](https://webmasters.googleblog.com/2014/08/https-as-ranking-signal.html) for its search results. Protecting your user's data, higher ranked in Google AND that nice green bar in front of your website? Still not convinced? On top of that we see that [HTTP/2](https://en.wikipedia.org/wiki/HTTP/2), which gives users a nice speed increase, is mostly supported in combination with HTTPS for now. What's keeping you, partner? 
 
-It used to be expensive and tedious process getting a SSL certificate for your domain. If your site was not dealing with credentials or sensitive personal data you could say it wasn't worth the effort. Nowadays, this is no longer an excuse not to get a certificate. With providers like [SSLMate (paid)](https://www.sslmate) and initiatives like [Let's Encrypt (free)](https://letsencrypt.org/), creating your certificate this a trivial task. Since Let's Encrypt is a fully automated and free solution to get your certificates, a lot of people are using it.
+It used to be expensive and tedious process getting a SSL certificate for your domain. If your site was not dealing with credentials or sensitive personal data you could say it wasn't worth the effort. Nowadays, this is no longer an excuse not to get a certificate. With providers like [SSLMate (paid)](https://www.sslmate) and initiatives like [Let's Encrypt (free)](https://letsencrypt.org/), creating your certificate is a trivial task. Since Let's Encrypt is a fully automated and free solution to get your certificates, a lot of people are using it.
 
 In this post I will link to several smaller posts on HTTPS and certificates. First let's get a bit of terminology out of the way that you might see in these posts.
 
@@ -65,7 +65,7 @@ Every JDK has its own keystore, which contains all Certificate Authorities it tr
  keytool -list -keystore cacerts -storepass changeit
 ```
 
-If you don't want use the default trust store of your JDK, there are several ways you override the default behaviour. 
+If you don't want use the default trust store of your JDK, there are several ways you can override the default behaviour. 
 
 1. Start your Java application with a System property or Environment variable `javax.net.ssl.trustStore=<LOCATION TO YOUR CUSTOM TRUSTSTORE>` that refers to your custom keystore
 2. Create a trust store named `jssecacerts`, with `Keytool`, in your `java-home/lib/security` folder. If this file exists, it takes precedence over `cacerts`
