@@ -51,7 +51,7 @@ You can see I highlighted the **GeoTrust Global CA** certificate, this is the Ce
 
 ![Google certificate chain]({{ site.url }}/img/post/https-google.png "Google certificate chain")
 
-This process is called **one-way SSL** authentication*, in which only the server has to be validated for authenticity. This is what you will come across most of the time.
+This process is called **one-way SSL** authentication, in which only the server has to be validated for authenticity. This is what you will come across most of the time.
 **Two-way SSL** also exists in which the client is also required to have and send a certificate to the server.  This allows the server to validate the client’s certificate.
 
 ### Certificates in Java
