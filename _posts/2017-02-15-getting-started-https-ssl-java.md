@@ -12,7 +12,7 @@ tags:
 
 If you are running a site and it is still not using HTTPS, shame on you! Even if you are not transmitting sensitive data, there are still several reasons why you should enable HTTPS.
 
-In 2014, Google announced that [HTTPS was a ranking signal](https://webmasters.googleblog.com/2014/08/https-as-ranking-signal.html) for its search results. Protecting your user's data, higher ranked in Google AND that nice green bar in front of your website? Still not convinced? On top of that we see that [HTTP/2](https://en.wikipedia.org/wiki/HTTP/2), which gives users a nice speed increase, only supports HTTPS for now. What's keeping you, partner? 
+In 2014, Google announced that [HTTPS was a ranking signal](https://webmasters.googleblog.com/2014/08/https-as-ranking-signal.html) for its search results. Protecting your user's data, higher ranked in Google AND that nice green bar in front of your website? Still not convinced? On top of that we see that [HTTP/2](https://en.wikipedia.org/wiki/HTTP/2), which gives users a nice speed increase, is mostly supported in combination with HTTPS for now. What's keeping you, partner? 
 
 It used to be expensive and tedious process getting a SSL certificate for your domain. If your site was not dealing with credentials or sensitive personal data you could say it wasn't worth the effort. Nowadays, this is no longer an excuse not to get a certificate. With providers like [SSLMate (paid)](https://www.sslmate) and initiatives like [Let's Encrypt (free)](https://letsencrypt.org/), creating your certificate this a trivial task. Since Let's Encrypt is a fully automated and free solution to get your certificates, a lot of people are using it.
 
@@ -37,6 +37,9 @@ Each client (browser, OS, JDK, etc.) ships with a list of trusted CAs. This list
 #### SSL Certificate Chain
 All SSL/TLS connections rely on a chain of trust called the SSL Certificate Chain. 
 This chain of trust is established by certificate authorities (CAs) who serve as trust anchors that verify the validity of the systems being communicated with. If a certificate is signed by a certificate, that on its own turn has been signed by a Certificate Authority, you can trust the certificate because it's in the chain of trust.
+
+![Certificate Chain]({{ site.url }}/img/post/ssl-chain.png "Certificate Chain")
+
 
 ### How does it work?
 
