@@ -68,7 +68,7 @@ Every JDK has its own keystore, which contains all Certificate Authorities it tr
 If you don't want use the default trust store of your JDK, there are several ways you override the default behaviour. 
 
 1. Start your Java application with a System property or Environment variable `javax.net.ssl.trustStore=<LOCATION TO YOUR CUSTOM TRUSTSTORE>` that refers to your custom keystore
-2. Create a `jssecacerts` trust store in your `java-home/lib/security` folder. If this file exists, it takes precedence over `cacerts`
+2. Create a trust store named `jssecacerts`, with `Keytool`, in your `java-home/lib/security` folder. If this file exists, it takes precedence over `cacerts`
 3. If none of the above are present, the default `cacerts`is used.
 
 ### Tell me more
