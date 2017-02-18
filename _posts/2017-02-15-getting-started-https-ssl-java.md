@@ -3,6 +3,7 @@ layout: post
 title: Getting started with TLS/SSL (HTTPS) in Java
 author: Driss Amri
 date: 2017-02-15
+published: false
 tags:
  - Java
  - TLS
@@ -56,7 +57,7 @@ This process is called **one-way SSL** authentication, in which only the server 
 
 ### Certificates in Java
 
-The JDK ships with a tool called [Keytool](http://docs.oracle.com/javase/6/docs/technotes/tools/solaris/keytool.html) to create certificates or manipulate key stores/trust stores. For some of the most commonly used commands go check out this [site](https://www.sslshopper.com/article-most-common-java-keytool-keystore-commands.html). 
+The JDK ships with a tool called [keytool](http://docs.oracle.com/javase/6/docs/technotes/tools/solaris/keytool.html) to create certificates or manipulate key stores/trust stores. For some of the most commonly used commands go check out this [site](https://www.sslshopper.com/article-most-common-java-keytool-keystore-commands.html). 
 
 Every JDK has its own keystore, which contains all Certificate Authorities it trusts. (also referred to as truststore). This trust store is stored as `cacerts` under your `JDK_DIR/jre/lib/security/`. On my Mac this is located at `/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/security`
  The default password for this keystore is `changeit`. By using the following command, you can have a look at the JDK’s keystore:
@@ -73,7 +74,7 @@ If you don't want use the default trust store of your JDK, there are several way
 
 ### Tell me more
  
-* Generate self-signed HTTPS certificates
+* [Generate a self-signed HTTPS certificate]({{ site.url }}/blog/2017/02/18/generate-a-self-signed-certificate-keytool/)
 * Generate Let's Encrypt HTTPS certificates
 * [Let's Encrypt certificates in Java throw SunCertPathBuilderException]({{ site.url }}/blog/2017/02/16/trusting-lets-encrypt-java/)
 * Enabling HTTPS on Cloud Foundry (Bluemix)
