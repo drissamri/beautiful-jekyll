@@ -3,6 +3,7 @@ layout: post
 title: Trusting Let's Encrypt SSL certificate in a Java Spring application 
 author: Driss Amri
 date: 2017-02-22
+excerpt: How to handle java SunCertPathBuilderException exceptions when connecting to a HTTPS webserver that is using Let's Encrypt certificates
 tags:
  - Java
  - SSL

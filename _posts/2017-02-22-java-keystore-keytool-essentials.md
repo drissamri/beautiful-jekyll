@@ -3,7 +3,7 @@ layout: post
 title: Getting started with HTTPS - Java keystore and keytool essentials
 author: Driss Amri
 date: 2017-02-22
-excerpt: Keytool is a tool to easily view and manipulate keystores and certificates in Java.
+excerpt: keytool is a tool to easily view and manipulate keystores and certificates in Java.
 tags: 
  - Java
  - TLS

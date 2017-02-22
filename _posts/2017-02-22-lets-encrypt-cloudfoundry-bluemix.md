@@ -3,6 +3,7 @@ layout: post
 title: Let's Encrypt SSL on Cloud Foundry and Bluemix
 author: Driss Amri
 date: 2017-02-22
+excerpt: Generate and use Let's Encrypt certificates for your Cloud Foundry and Bluemix applications
 tags:
  - Java
  - SSL
