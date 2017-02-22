@@ -17,33 +17,34 @@ tags:
 3. **[Getting started with HTTPS: Let's Encrypt on Cloud Foundry and Bluemix]()**
 4. [Getting started with HTTPS: Trusting Let's Encrypt certificates in Java]({{site.url}}{% link _posts/2017-02-22-trusting-lets-encrypt-java.md %})
 
-Let's Encrypt has made it terrible easy and free to get trusted certificates to setup HTTPS connections to your application. I will show you how to create a certificate and add it to your Cloud Foundry and Bluemix applications. Cloud Foundry is an open source `Platform-as-a-Serivce` which is used by many cloud providers. Bluemix is one of these providers that uses Cloud Foundry as a foundation for their platform. This also means that the Cloud Foundry method described below will also work for Bluemix. 
+[Let's Encrypt](https://letsencrypt.org/) has made it easy and free to get trusted certificates to setup HTTPS connections to your application. I will show you how to create a certificate and add it to your Cloud Foundry and Bluemix applications. Cloud Foundry is an open source `Platform-as-a-Service` which is used by many cloud providers. Bluemix is one of these providers that uses Cloud Foundry as a foundation for their platform. This also means that the Cloud Foundry method described below will also work for Bluemix. 
 
-Since every implementation of Cloud Foundry will have a different graphical interface, I will try to do as much as possible through the `Command Line Interface (CLI)`. The prerequisite for all methods is that you have a Cloud Foundry application running. 
+Since every implementation of Cloud Foundry will have a different graphical interface, I will try to do as much as possible through the `Command Line Interface (CLI)`.
 
 ### Prerequisites
-There are a few prerequisites for all methods described below. 
 - Recent version of the Cloud Foundry Command Line Interface installed
 - A working running Cloud Foundry application
-- Added your custom domain in Cloud Foundry and setup your DNS at your provider to forward to Cloud Foundry.
-- Install the Let's Encrypt [certbot](https://certbot.eff.org/) - make sure you choose `Software`: `none of the above` since we are doing a manual install of the certificate.
+- A custom domain linked to your application in Cloud Foundry 
+- A proper DNS setup at your provider, that forwards your domain to your Cloud Foundry application.
+
+## Manual Let's Encrypt certificates on Cloud Foundry (WORK IN PROGRESS)
+
+Install the Let's Encrypt [certbot](https://certbot.eff.org/) - make sure you choose `Software`: `none of the above` since we are doing a manual install of the certificate.
 ![Certbot]({{ site.url }}/img/post/certbot-manual.png "Certbot")
 
-## Manual Let's Encrypt certificates on Cloud Foundry
-
-MORE TO COME
+**POST HAS TO BE UPDATED MORE TO COME**
 
 ## Automated Let's Encrypt certificates on Cloud Foundry
 
 There are a few extra prerequisites for this automated step.  
-Install the [Cloud Foundry Command Line interface](http://docs.cloudfoundry.org/cf-cli/install-go-cli.html).  
-Download the [cloudfoundry-letsencrypt](https://github.com/bsyk/cf-letsencrypt) script  
-Make sure you have [Python](https://www.python.org/downloads/) installed on your computer.  
-Make sure you have [pip](https://pip.pypa.io/en/stable/installing/) installed on your computer.  
+- Install the [Cloud Foundry Command Line interface](http://docs.cloudfoundry.org/cf-cli/install-go-cli.html).  
+- Download the [cloudfoundry-letsencrypt](https://github.com/bsyk/cf-letsencrypt) script  
+- Make sure you have [Python](https://www.python.org/downloads/) installed on your computer.  
+- Make sure you have [pip](https://pip.pypa.io/en/stable/installing/) installed on your computer.  
 
-When you have the necessary prerequisites on your compouter, go to the downloaded `cf-letsencrypt` folder. Rename the `domains.yml.example` file to `domains.yml`. Add your `email`, `domain(s)` and `host(s)` for which you want to generate and install certificates. You can set the `staging` property to `true`, when trying out the script, so you don't hit the Let's Encrypt rate limits. When set to true, certificates that are generated will be signed by a fake/test certificate and are not trusted by browsers. 
+When you have the necessary prerequisites on your compouter, go to the downloaded `cf-letsencrypt` folder. Rename the `domains.yml.example` file to `domains.yml`. Add your `email`, `domain(s)` and `host(s)` for which you want to generate and install certificates. You can set the `staging` property to `true`, when trying out the script, so you don't hit the Let's Encrypt rate limits. When set to true, certificates that are generated will be signed by a test certificate and will not be trusted by browsers. 
 
-Here you can see my `domains.yml` for my new experimenting domain `drissamri.me`:
+Here you can see my `domains.yml` for my domain `drissamri.me`:
 
 ```javascript
 {
@@ -60,7 +61,7 @@ Here you can see my `domains.yml` for my new experimenting domain `drissamri.me`
   ]
 }
 ```
-You are now ready to run the script: `python setup-app.py`. This can take a few minutes. If no errors occured, the certificates are generated and available in the script's generated `letsencrypt` application on Cloud Foundry. You can run the following commands to copy the files over to your local machine, don't forget to fill in your domain inside the commands. In my case it would be `drissamri.me`
+You are now ready to run the script: `python setup-app.py`. This can take a few minutes. If no errors occured, the certificates are generated and available in the automatically created `letsencrypt` application on Cloud Foundry. You can run the following commands to copy the files over to your local machine, don't forget to fill in your domain inside the commands. In my case it would be `drissamri.me`:
 
 ```shell
 cf ssh letsencrypt -c 'cat ~/app/conf/live/<<YOURDOMAIN>>/cert.pem' > cert.pem
@@ -69,13 +70,13 @@ cf ssh letsencrypt -c 'cat ~/app/conf/live/<<YOURDOMAIN>>/fullchain.pem' > fullc
 cf ssh letsencrypt -c 'cat ~/app/conf/live/<<YOURDOMAIN>>/privkey.pem' > privkey.pem
 ```
 
-As far as I know, there is no `Command Line Interface` command to upload these certificates to your Cloud Foundry instance. I suggest you head over to your providers website, and upload them manually through the website. If you are using Bluemix, please use the method provided below. This script's generated `letsencrypt` application does not shutdown automatically, make sure you run `cf stop letsencrypt` to stop the application or `cf delete letsencrypt` to delete the application. Deleting means you can no longer download the certificates and will have to generate them again if you didn't copy them and need them for another webserver.
+As far as I know, there is no `Command Line Interface` command available to upload these certificates to your Cloud Foundry instance. I suggest you head over to your providers website, and upload them manually through the website. If you are using Bluemix, please use the method provided below. This `letsencrypt` application does not shutdown automatically, make sure you run `cf stop letsencrypt` to stop the application or `cf delete letsencrypt` to delete the application. Deleting means you can no longer download the certificates and will have to generate them again if you didn't copy them and need them for another webserver.
 
 ## Automated Let's Encrypt certificates on Bluemix
 
-This method is very similar to the one for Cloud Foundry, but in this step the prerequisites are a little bit different. You need to have the additional [Bluemix Command Line Interface](http://clis.ng.bluemix.net/ui/home.html) installed and use the [bluemix-letsencrypt](https://github.com/ibmjstart/bluemix-letsencrypt) specific script instead of the `cloudfoundry-letsencrypt` script. 
+This method is very similar to the one for Cloud Foundry, but in this step the prerequisites are a little bit different. You need to have the additional [Bluemix Command Line Interface](http://clis.ng.bluemix.net/ui/home.html) installed and use the [bluemix-letsencrypt](https://github.com/ibmjstart/bluemix-letsencrypt) specific script instead of the [cloudfoundry-letsencrypt](https://github.com/bsyk/cf-letsencrypt) script. 
 
-The added benefit of using the Bluemix specific method is that you don't have to manually download and upload the certificates through the GUI to your domain. This is done automatically by the Bluemix CLI.
+The added benefit of using this Bluemix specific method is that you don't have to manually download and upload the generates HTTPS certificates. This is done automatically in the script, using the `Bluemix CLI`
 
 Update the `domains.yml` like described in the previous method. You are now ready to run the script: `python setup-app.py`. This can take a few minutes, but if everything went OK, the output should be something like this: 
 ```shell
