@@ -1,9 +1,8 @@
 ---
 layout: post
-title: Trusting Let's Encrypt SSL certificate in a Java Spring application
+title: Trusting Let's Encrypt SSL certificate in a Java Spring application 
 author: Driss Amri
-date: 2017-02-16
-published: false
+date: 2017-02-22
 tags:
  - Java
  - SSL
@@ -12,8 +11,11 @@ tags:
  - Spring Boot
  - X509
  - Let's Encrypt
- - Certificate
 ---
+1. [Getting started with HTTPS: Overview]({{site.url}}{% link _posts/2017-02-22-getting-started-https.md %})
+2. [Getting started with HTTPS: Java keystore and keytool essentials]({{site.url}}{% link _posts/2017-02-22-java-keystore-keytool-essentials.md %})
+3. [Getting started with HTTPS: Let's Encrypt on Cloud Foundry and Bluemix]({{site.url}}{% link _posts/2017-02-22-lets-encrypt-cloudfoundry-bluemix.md %})
+4. **[Getting started with HTTPS: Trusting Let's Encrypt certificates in Java]()**
 
 You are trying to make a HTTP call to an HTTPS endpoint, that is using `Let's Encrypt` certificate, in Java. This example is using Spring's RestTemplate, but this could be plain old Java, OkHttp or any other HTTP client implementation:
 
@@ -93,7 +95,7 @@ rm -f isrgrootx1.der lets-encrypt-x3-cross-signed.der lets-encrypt-x4-cross-sign
 
 Save this script as `install-certs.sh`. You can call this script using the following command: `sh install-certs.sh $(/usr/libexec/java_home -v '1.8*')`. Fill in the 1.8* with your current JDK version if you have multiple JDK 1.8.X on your machine, or if you are using an older JDK. After running this script and restarting your Java application, it should work fine without the certificate error.
 
-## Package a custom truststore with the certificate in your application
+## Package a custom truststore in your application
 
 If you are unable to upgrade the JDK, and not able to modify the server's JDK truststore (e.g. on a cloud environment) you can always package a custom truststore in your application. Either copy the cacerts from a local newer JDK or use the automated way above and package the resulting `cacerts` with your WAR/JAR. Here's an example of creating a RestTemplate using a custom cacerts truststore that is available on the classpath:
 
@@ -121,5 +123,9 @@ First I load in the truststore in memory, then I add it as the truststore in a n
 
 This way you should not have any problems anymore calling any site that is using Let's Encrypt certificate.
 
-
+## Continue your HTTPS journey
+1. [Getting started with HTTPS: Overview]({{site.url}}{% link _posts/2017-02-22-getting-started-https.md %})
+2. [Getting started with HTTPS: Java keystore and keytool essentials]({{site.url}}{% link _posts/2017-02-22-java-keystore-keytool-essentials.md %})
+3. [Getting started with HTTPS: Let's Encrypt on Cloud Foundry and Bluemix]({{site.url}}{% link _posts/2017-02-22-lets-encrypt-cloudfoundry-bluemix.md %})
+4. **[Getting started with HTTPS: Trusting Let's Encrypt certificates in Java]()**
 

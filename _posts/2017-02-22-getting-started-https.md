@@ -2,13 +2,19 @@
 layout: post
 title: Getting started with HTTPS guide
 author: Driss Amri
-date: 2017-02-15
+date: 2017-02-22
+excerpt: If you are running a web application and it's still not using HTTPS, shame on you! Even if you are not transmitting sensitive data, there are still several reasons why you should enable HTTPS.
 tags:
  - Java
  - TLS
  - SSL
  - Security
 ---
+1. **[Getting started with HTTPS: Overview]()**
+2. [Getting started with HTTPS: Java keystore and keytool essentials]({{site.url}}{% link _posts/2017-02-22-java-keystore-keytool-essentials.md %})
+3. [Getting started with HTTPS: Let's Encrypt on Cloud Foundry and Bluemix]({{site.url}}{% link _posts/2017-02-22-lets-encrypt-cloudfoundry-bluemix.md %})
+4. [Getting started with HTTPS: Trusting Let's Encrypt certificates in Java]({{site.url}}{% link _posts/2017-02-22-trusting-lets-encrypt-java.md %})
+
 
 If you are running a web application and it's still not using HTTPS, shame on you! Even if you are not transmitting sensitive data, there are still several reasons why you should enable HTTPS.
 
@@ -54,9 +60,10 @@ You can see I highlighted the **GeoTrust Global CA** certificate, this is the Ce
 This process is called **one-way SSL** authentication, in which only the server has to be validated for authenticity. This is what you will come across most of the time.
 **Two-way SSL** also exists in which the client is also required to have and send a certificate to the server.  This allows the server to validate the client’s certificate.
 
-## Continue the getting started guide
-1. Getting started with HTTPS: Overview
-2. Getting started with HTTPS: Java keystore and keytool essentials
-3. Getting started with HTTPS: Generate a untrusted self-signed HTTPS certificate
-3. Getting started with HTTPS: Generate a trusted Let's Encrypted HTTPS certificate
+## Continue your HTTPS journey
+1. **[Getting started with HTTPS: Overview]()**
+2. [Getting started with HTTPS: Java keystore and keytool essentials]({{site.url}}{% link _posts/2017-02-22-java-keystore-keytool-essentials.md %})
+3. [Getting started with HTTPS: Let's Encrypt on Cloud Foundry and Bluemix]({{site.url}}{% link _posts/2017-02-22-lets-encrypt-cloudfoundry-bluemix.md %})
+4. [Getting started with HTTPS: Trusting Let's Encrypt certificates in Java]({{site.url}}{% link _posts/2017-02-22-trusting-lets-encrypt-java.md %})
+
 
