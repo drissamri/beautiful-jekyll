@@ -73,36 +73,11 @@ As far as I know, there is no `Command Line Interface` command to upload these c
 
 ## Automated Let's Encrypt certificates on Bluemix
 
-There are a few extra prerequisites for this automated step.  
-Install the [Cloud Foundry Command Line interface](http://docs.cloudfoundry.org/cf-cli/install-go-cli.html).  
-Install the [Bluemix Command Line interface](http://clis.ng.bluemix.net/ui/home.html).  
-Download the [bluemix-letsencrypt](https://github.com/ibmjstart/bluemix-letsencrypt) script
-Make sure you have [Python](https://www.python.org/downloads/) installed on your computer.  
-Make sure you have [pip](https://pip.pypa.io/en/stable/installing/) installed on your computer.  
+This method is very similar to the one for Cloud Foundry, but in this step the prerequisites are a little bit different. You need to have the additional [Bluemix Command Line Interface](http://clis.ng.bluemix.net/ui/home.html) installed and use the [bluemix-letsencrypt](https://github.com/ibmjstart/bluemix-letsencrypt) specific script instead of the `cloudfoundry-letsencrypt` script. 
 
-This method is very similar to the one for Cloud Foundry, only in this step you amlso need to have the `Bluemix CLI` installed and use the `bluemix-letsencrypt` specific script instead of the `cloudfoundry-letsencrypt` script. 
+The added benefit of using the Bluemix specific method is that you don't have to manually download and upload the certificates through the GUI to your domain. This is done automatically by the Bluemix CLI.
 
-When you have the necessary prerequisites on your compouter, go to the downloaded `bluemix-letsencrypt` folder. Rename the `domains.yml.example` file to `domains.yml`. Add your `email`, `domain(s)` and `host(s)` for which you want to generate and install certificates. You can set the `staging` property to `true`, when trying out the script, so you don't hit the Let's Encrypt rate limits. When set to true, certificates that are generated will be signed by a fake/test certificate and are not trusted by browsers. 
-
-Here you can see my `domains.yml` for my new experimenting domain `drissamri.me`:
-
-```javascript
-{
-  "email": "test@drissamri.me",
-  "staging": false,
-  "domains": [
-    {
-      "domain": "drissamri.me",
-      "hosts": [
-        ".",
-        "www"
-     ]
-    }
-  ]
-}
-```
-
-You are now ready to run the script: `python setup-app.py`. This can take a few minutes, but if everything went OK, the output should be something like this: 
+Update the `domains.yml` like described in the previous method. You are now ready to run the script: `python setup-app.py`. This can take a few minutes, but if everything went OK, the output should be something like this: 
 ```shell
 requested state: started
 instances: 1/1
@@ -135,7 +110,7 @@ Warning: Please note that your SSL certificate, its corresponding PRIVATE KEY, a
 Upload Succeeded
 ```
 
-The benefit of using this method over the previous Cloud Foundry method is that your certificates are automatically uploaded to Bluemix for your existing domain. This means you don't have to manually download them from your instances and upload them. Your website, in my case `drissamri.me`, should now be available over https. If you want to copy the certificates, you just need to follow the instructions in the output. This is done using by ssh'ing into your application using `cf ssh letsencrypt` and copying the files located in `~/app/conf/live/YOURDOMAIN/`.
+Your website, in my case `drissamri.me`, should now already be available over https. If you want to copy the certificates, you just need to follow the instructions in the output. This is done using by ssh'ing into your application using `cf ssh letsencrypt` and copying the files located in `~/app/conf/live/YOURDOMAIN/`.
 
 ## Continue your HTTPS journey
 1. [Getting started with HTTPS: Overview]({{site.url}}{% link _posts/2017-02-22-getting-started-https.md %})
