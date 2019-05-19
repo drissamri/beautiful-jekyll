@@ -37,24 +37,23 @@ navbar-links:
 # Important: you must keep the "name" parameter, everything else you can remove
 author:
   name: Driss Amri
-  email: "hello@drissamri.be"
   facebook: driss.amri
   github: drissamri
   twitter: drams88
   linkedin: in/drissamri
   stackoverflow: 492723/driss-amri
-  #instagram: yourname 
-  # snapchat: yourname  
-  # youtube: yourlink 
+  #instagram: yourname
+  # snapchat: yourname
+  # youtube: yourlink
   # spotify: yourname
-  # xing: yourname  
-  # google-plus: +yourname  
+  # xing: yourname
+  # google-plus: +yourname
 
 # Select which links to show in the footer
 footer-links-active:
   rss: true
-  facebook: true
-  email: true
+  facebook: false
+  email: false
   twitter: true
   github: true
   linkedin: true
@@ -98,6 +97,7 @@ permalink: /blog/:year/:month/:day/:title/
 kramdown:
   input: GFM
   syntax_highlighter: rouge
+  parse_block_html: true
 
 gems:
   - jekyll-gist
