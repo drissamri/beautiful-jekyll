@@ -222,7 +222,7 @@ CloudWatch REPORT Duration: 69.36 ms  Billed Duration: 100 ms  Memory Size: 1024
 ```
   
 ## Conclusion
-A overview of the three different working examples:
+An overview of the three different working examples. The results of Spring Cloud Function are omitted because of the issue we discussed above.
 
 ![Cold start latency]({{ site.url }}/img/post/coldstart-comparison.png "Cold start latency")
 
