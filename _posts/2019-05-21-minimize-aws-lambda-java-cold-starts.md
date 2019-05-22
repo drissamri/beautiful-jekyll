@@ -138,9 +138,9 @@ This is why it's smart to move objects that are expensive to create to global st
 When comparing different languages and frameworks, it's important to do more than a `Hello World` example. 
 Especially in Java adding one dependency could potentially have a big impact on your start up already depending on what gets initialized.
 
-In a simple example I will use an API Gateway that has one HTTP endpoint `addProduct` that's backed by a Lambda function.
-This function will add a new product in a database. The database will be implemented by leveraging DynamoDB, since it's very easy to setup and easy to connect to from a Lambda.
-We will use X-Ray to examine the cold start timing of a few different examples.
+I will build a simple example that'll use an API Gateway that has one HTTP endpoint `addProduct` that's backed by a Lambda function.
+This function will add a new product in a database. The database we use in this example is DynamoDB, since it's very easy to setup and easy to connect to from a Lambda.
+I'll have a look at this example implemented with a few different frameworks and use X-Ray to examine the cold start performance.
 
 The example’s architecture is shown below: ![Function example]({{ site.url }}/img/post/coldstart-example.png "Function example")
 
@@ -157,16 +157,16 @@ This is why it's important to compare actual end to end duration instead of the 
 ![Coldstart examined]({{ site.url }}/img/post/coldstart-java-lightweight.png "Coldstart examined")
 
 ### Example: Java 8 - Spring Cloud Function
-Last time I've used Spring Cloud Function 1.x the cold start times were terrible (8-12 seconds).
-Now they have been working hard on it, providing a more Functional bean style registration and other improvements, so it should be a lot better now.
+Last time I’ve used Spring Cloud Function 1.x the cold start times were terrible (8-12 seconds). 
+These cold start times however should have drastically improved in recent updates by providing a more [functional bean style registration](hhttps://spring.io/blog/2018/10/22/functional-bean-registrations-in-spring-cloud-function) among other things.
 
 I made a few attempts to see how much they have improved but I kept running into issues, with both my own example as well as the [Spring Cloud Function AWS reference sample](https://github.com/spring-cloud/spring-cloud-function/tree/master/spring-cloud-function-samples/function-sample-aws).  
-
 My test case ended up with an exception which can be found below - the same issue was reported on [GitHub issues](https://github.com/spring-cloud/spring-cloud-function/issues/367):
 ```
 01:32:42 |_ checkpoint ⇢ Request to GET http://localhost/2018-06-01/runtime/invocation/next [DefaultWebClient]
 01:32:42 Caused by: java.net.ConnectException: Connection refused
 ```
+
 
 ### Example: Java 8 - Micronaut 
 In this example I got to play around with Micronaut, a young new promising Framework that also has good support for Serverless applications.
@@ -197,11 +197,11 @@ CloudWatch REPORT Duration: 2170.02 ms  Billed Duration: 2200 ms  Memory Size: 1
 ### Example overview
 While this is not perfect, for asynchronous requests this acceptable in most cases.
 For synchronous requests it still might be good enough, since only a small % of total requests will actually encounter a cold start.
-This will definitely still improve in the future, hopefully when AWS releases the JDK 10 runtime some improvements will be visible too.
+This will definitely improve in the future. Hopefully, when AWS releases the JDK 10 runtime it'll include some noticeable improvements already.
 
 When this is not acceptable for one of your low latency critical services 
 I'd really suggest to take a look at node.js, especially combined with TypeScript, which 
-should be reasonable fast to be picked up by your Java developers. 
+should be reasonably fast to be picked up by your Java developers. 
 One of the benefits of Lambda's is that the code base for one function should never be too big, 
 so you can easily experiment and try to use another framework or language for a small part of your overall architecture.
 
@@ -222,8 +222,15 @@ CloudWatch REPORT Duration: 69.36 ms  Billed Duration: 100 ms  Memory Size: 1024
 ```
   
 ## Conclusion
-Java will never have the fastest start up times, but you can optimize quite a bit. Make sure you pick your dependencies & frameworks carefully. Tweak & experiment with memory settings depending on what your functions does.
-Default to Lambda's outside of a VPC, unless you really need it. When the highest start up performance is needed, be open to experiment with a different language like node.js.
+A overview of the three different working examples:
+
+![Cold start latency]({{ site.url }}/img/post/coldstart-comparison.png "Cold start latency")
+
+Java will never have the fastest start up times, but you can optimize quite a bit. 
+Make sure you pick your dependencies & frameworks carefully. 
+Tweak & experiment with memory settings depending on what your functions do.
+Default to Lambda's outside of a VPC, unless you really need to. 
+When the highest start up performance is needed, be open to experiment with a different language like node.js.
 
 
 We haven't spoken about the AWS Lambda Custom Runtimes, but they open up some more possibilities to tweak the JVM settings or to deploy an experimental GraalVM native-image.
