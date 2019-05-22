@@ -3,7 +3,7 @@ layout: post
 title: How to minimize AWS Lambda Java cold starts
 author: Driss Amri
 date: 2019-05-19
-excerpt: You've heard about AWS Lambda and their cold starts and are curious what they are and how to deal with it? Let's have a look how bad they really are and what frameworks like Quarkus and Micronaut can do to help together with GraalVM. 
+excerpt: You've heard about AWS Lambda and their cold starts and are curious what they are and how to deal with it? Let's have a look how bad they really are and what frameworks like Quarkus and Micronaut can do.
 tags:
  - Serverless
  - AWS Lambda
@@ -14,7 +14,7 @@ tags:
 ---
 
 You've heard about AWS Lambda and you know they have a thing called cold starts, but what are they and how bad are they?
-One year a go I was in this exact spot for a new project that would be built using Java, which apparently suffers tremendously from slow cold starts
+One year ago I was in this exact spot for a new project that would be built using Java, which apparently suffers tremendously from slow cold starts
 Let's have a look at what I've learned.
 
 ## What is a cold start?
