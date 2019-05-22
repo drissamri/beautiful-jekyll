@@ -37,7 +37,7 @@ Here are a few examples when AWS has to spin up a new instance and go through a 
 - After function deployment or configuration change  
 
 These visualization might give you a better understanding of why this is an issue.
-This is an example of a Lambda that's being called 100 times sequentially with a concurrency of 1:  
+This is an example of a function that's being called 100 times sequentially with a concurrency of 1:  
 ![AWS Lambda concurrency 1]({{ site.url }}/img/post/coldstart-concurrency-1.png)
 
 Now let's compare the same case but with a concurrency of 10:  
@@ -104,28 +104,28 @@ Your default toolbox as a Java developer most likely contains Spring, even thoug
 If you really want to use Spring, definitely make sure you use Spring Cloud Function instead of Spring Boot. 
 A lot of optimalization work has been done lately to make it faster.
 
-When integrating to AWS services like S3, DynamoDB and so on it helps to use the [AWS SDK for Java 2.x](https://aws.amazon.com/blogs/developer/aws-sdk-for-java-2-x-released/) over the older one. 
-This can shave off a few hundred milliseconds your startup. 
+When integrating with AWS services like S3, DynamoDB and so on it helps to use the [AWS SDK for Java 2.x](https://aws.amazon.com/blogs/developer/aws-sdk-for-java-2-x-released/) over the older one. 
+This can shave off a few hundred milliseconds from start up. 
 AWS provides a no-dependency lightweight HTTP client that starts up faster than the default Apache HTTP client, but this is not enabled by default.
 
 Most of my Lambda's are built with [Dagger](https://github.com/google/dagger) (Dependency Injection) and [Gson](https://github.com/google/gson) (JSON parsing, faster than Jackson) and a few extras.
 This has served me well so far but I'm evaluating newer frameworks like [Quarkus](https://quarkus.io/) and [Micronaut](https://micronaut.io/) that have been built with fast start ups and low memory environments in mind.
-Both these frameworks also have been were fast to support [GraalVM](https://www.graalvm.org/), which I won't talk about today but this will the subject of my next blog post.
+Both these frameworks have been fast to provide initial support for [GraalVM](https://www.graalvm.org/), which I won't talk about today but this will the subject of my next blog post.
 
 
 ### 4. Prefer low overhead runtimes
 Dare to ask if your services could be implemented in a 
-language that has less problems with slow cold starts like nodejs, Python or Go. 
+language that has less problems with slow cold starts like node.js, Python or Go. 
 
-Java is still my go-to language but functions should be small services, which could help in experimenting with other language.
-Nowadays the JavaScript quirks are much less when using nodejs with TypeScript. 
+Java is still my go-to language but functions should be small services, which could help in experimenting with other languages.
+Nowadays the JavaScript quirks are much less when using node.js with TypeScript. 
 This could be a good candidate for a Java developer to experiment with.
 
 
 ### 5. Choose the right memory settings
 The higher you set the memory settings, the more you are billed for execution time.
 The important remark is, when you double your memory on AWS Lambda you get **more** than double the CPU capacity.
-This could possibly mean your Lambda will execute faster and it'll costs less than you would have with lower memory settings.
+This could possibly mean your Lambda will execute faster and it'll cost less than you would have with lower memory settings.
 
 It's crucial to fine-tune and find the best memory settings for your function. A tool like [AWS Lambda Power Tuning](https://github.com/alexcasalboni/aws-lambda-power-tuning) could help you do this automatically.
 
@@ -138,10 +138,11 @@ This is why it's smart to move objects that are expensive to create to global st
 When comparing different languages and frameworks, it's important to do more than a `Hello World` example. 
 Especially in Java adding one dependency could potentially have a big impact on your start up already depending on what gets initialized.
 
-As a simple example I will use a function that has one HTTP endpoint `addProduct`, which will add a new product in a database. 
-We will use DynamoDB since it's very easy to setup and integrate from a Lambda. We will use X-Ray to examine the cold start timing of a few different examples.
+In a simple example I will use an API Gateway that has one HTTP endpoint `addProduct` that's backed by a Lambda function.
+This function will add a new product in a database. The database will be implemented by leveraging DynamoDB, since it's very easy to setup and easy to connect to from a Lambda.
+We will use X-Ray to examine the cold start timing of a few different examples.
 
-![Function example]({{ site.url }}/img/post/coldstart-example.png "Function example")
+The example’s architecture is shown below: ![Function example]({{ site.url }}/img/post/coldstart-example.png "Function example")
 
 When inspecting your Lambda with AWS X-Ray you can get a good understanding of the different phases of the instance start up.
 After your function was triggered, you can check CloudWatch Logs to see how long your function ran and how much you time you are billed for:    
@@ -150,13 +151,12 @@ After your function was triggered, you can check CloudWatch Logs to see how long
 The most important fact I learned while doing this, is that the reported duration is **NOT** how long your function needed to actually complete. 
 This is the time how long your code inside the handle method needed to finish. All the time your function needed to initialize like logic 
 in your class `Constructor`, `static initializers` and `global variables` are not shown in the reported duration. 
-When a framework does all it's heavy lifting in the constructor, you could potentially see a low reported duration in CloudWatch but actually duration could've been much higher.
+When a framework does all its heavy lifting in the constructor, you could potentially see a low reported duration in CloudWatch while the actual duration could've been much higher.
 This is why it's important to compare actual end to end duration instead of the reported duration in CloudWatch to have a fair comparison.
 
 ![Coldstart examined]({{ site.url }}/img/post/coldstart-java-lightweight.png "Coldstart examined")
 
-
-### Java 8 - Spring Cloud Function
+### Example: Java 8 - Spring Cloud Function
 Last time I've used Spring Cloud Function 1.x the cold start times were terrible (8-12 seconds).
 Now they have been working hard on it, providing a more Functional bean style registration and other improvements, so it should be a lot better now.
 
@@ -168,7 +168,7 @@ My test case ended up with an exception which can be found below - the same issu
 01:32:42 Caused by: java.net.ConnectException: Connection refused
 ```
 
-### Java 8 - Micronaut 
+### Example: Java 8 - Micronaut 
 In this example I got to play around with Micronaut, a young new promising Framework that also has good support for Serverless applications.
 - Micronaut 1.x
 - AWS SDK 2.0: Integration with DynamoDB + lightweight AWS HTTP client
@@ -180,7 +180,7 @@ Cold start: **5.3 seconds**
 CloudWatch REPORT Duration: 3210.99 ms  Billed Duration: 3300 ms  Memory Size: 1024 MB  Max Memory Used: 172 MB	
 ```
 
-### Java 8 - basic
+### Example: Java 8 - basic
 This example is how I usually built Lambda's in the last year.
 - Dagger 2: lightweight compile time dependency injection
 - Gson: fast startup JSON processing - faster than Jackson
@@ -194,17 +194,20 @@ Cold start: **3.9 seconds**
 CloudWatch REPORT Duration: 2170.02 ms  Billed Duration: 2200 ms  Memory Size: 1024 MB  Max Memory Used: 158 MB	
 ```
 
+### Example overview
 While this is not perfect, for asynchronous requests this acceptable in most cases.
 For synchronous requests it still might be good enough, since only a small % of total requests will actually encounter a cold start.
 This will definitely still improve in the future, hopefully when AWS releases the JDK 10 runtime some improvements will be visible too.
 
-When this is not acceptable for one of your low latency critical services, I'd really suggest to take a look at node.js (in combination with TypeScript) which 
-should be reasonable fast to be picked up by your Java developers. One of the benefits of Lambda's is that the code base for one function should 
-never be too big, so you can easily experiment and try to use another framework or language for a small part of your overall architecture.
+When this is not acceptable for one of your low latency critical services 
+I'd really suggest to take a look at node.js, especially combined with TypeScript, which 
+should be reasonable fast to be picked up by your Java developers. 
+One of the benefits of Lambda's is that the code base for one function should never be too big, 
+so you can easily experiment and try to use another framework or language for a small part of your overall architecture.
 
 Let's have a quick look at the same example implemented in node.js 8.
 
-### Node.js
+### Example: node.js v8.10
 
 - node.js 8 + TypeScript
 - webpack:  minification, uglification & tree-shaking
@@ -219,11 +222,9 @@ CloudWatch REPORT Duration: 69.36 ms  Billed Duration: 100 ms  Memory Size: 1024
 ```
   
 ## Conclusion
-Java will never have the fastest start up times, but you can optimize quite a bit.
-Make sure your pick your frameworks carefully. Tweak & experiment with memory settings depending on what your functions does.
-Default to Lambda's outside of a VPC, unless you really need it.
-When the highest start up performance is needed, be open to experiment with a different language like node.js.
+Java will never have the fastest start up times, but you can optimize quite a bit. Make sure you pick your dependencies & frameworks carefully. Tweak & experiment with memory settings depending on what your functions does.
+Default to Lambda's outside of a VPC, unless you really need it. When the highest start up performance is needed, be open to experiment with a different language like node.js.
 
 
 We haven't spoken about the AWS Lambda Custom Runtimes, but they open up some more possibilities to tweak the JVM settings or to deploy an experimental GraalVM native-image.
-In my next post I will experiment with a GraalVM native-image, see how the performance measures up and what limitations it has.
+In my next post I will do the same test with a GraalVM native-image, see how the performance measures up and what limitations it has.

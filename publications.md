@@ -6,9 +6,13 @@ permalink: /publications/
 
 ## Talks
 
+<a href="https://speakerdeck.com/drissamri/serverless-lessons-learned-nike-brown-bag" target="_blank">**Serverless on AWS: lessons learned**</a>
+  This talk was giving during a brown bag session @ Nike ELC. An overview of lessons learned of building Serverless architectures on AWS.
+**28/03/2019** 
+
 [**Introduction to JHipster**](https://speakerdeck.com/drissamri/introduction-to-jhipster) - [YouTube](https://youtu.be/lKzdgmoWIBo?list=LLATE3uiONzGMbrNW-I2DDPw&t=1461
 )  
-This talk was given at Hogeschool UC Leuven-Limburg (UCCL). An introduction to JHipster for modern web development with Java.    
+  This talk was given at Hogeschool UC Leuven-Limburg (UCCL). An introduction to JHipster for modern web development with Java.    
 **19/09/2015** 
 
 [**Web App Security - OWASP Top 10 2013**](https://speakerdeck.com/drissamri/web-app-security-owasp-top-10-2013)  
