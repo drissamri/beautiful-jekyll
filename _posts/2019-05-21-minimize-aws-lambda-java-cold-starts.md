@@ -153,6 +153,9 @@ in your class `Constructor`, `static initializers` and `global variables` are no
 When a framework does all it's heavy lifting in the constructor, you could potentially see a low reported duration in CloudWatch but actually duration could've been much higher.
 This is why it's important to compare actual end to end duration instead of the reported duration in CloudWatch to have a fair comparison.
 
+![Coldstart examined]({{ site.url }}/img/post/coldstart-java-lightweight.png "Coldstart examined")
+
+
 ### Java 8 - Spring Cloud Function
 Last time I've used Spring Cloud Function 1.x the cold start times were terrible (8-12 seconds).
 Now they have been working hard on it, providing a more Functional bean style registration and other improvements, so it should be a lot better now.
