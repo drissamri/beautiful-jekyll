@@ -79,7 +79,7 @@ In the [AWS documentation](https://docs.aws.amazon.com/lambda/latest/dg/best-pra
 
  ![AWS Lambda VPC decision tree]({{ site.url }}/img/post/coldstart-vpc-decision.png "AWS Lambda VPC decision tree")
 
-At re:Invent 2018 there was an excellent deep dive session - [A Serverless Journey: AWS Lambda Under the Hood (SRV409-R1)](https://www.youtube.com/watch?v=QdzV04T_kec) - in which they announced a new architecture for VPC Lambda's that should solve the slow starts.
+At re:Invent 2018 there was an excellent deep dive session - [A Serverless Journey: AWS Lambda Under the Hood (SRV409-R1)](https://www.youtube.com/watch?v=QdzV04T_kec) - in which they announced a new architecture for VPC Lambda's that should speed up the cold starts significantly.
 This should be released in 2019 but hasn't happened so far.
 
 **Current architecture:**  
