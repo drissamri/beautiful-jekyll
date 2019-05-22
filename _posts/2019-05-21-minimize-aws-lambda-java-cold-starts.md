@@ -14,30 +14,29 @@ tags:
 ---
 
 You've heard about AWS Lambda and you know they have a thing called cold starts, but what are they and how bad are they?
-One year a go I was in this exact spot for a new project that would be built using Java, which apparently has almost the slowest cold starts.
+One year a go I was in this exact spot for a new project that would be built using Java, which apparently suffers tremendously from slow cold starts
 Let's have a look at what I've learned.
 
 ## What is a cold start?
-AWS Lambda can dynamically scale your function up and down even to zero instances.  
+AWS Lambda can dynamically scale your function from 0 instances to as many instances as you need at any given time.
 This is really great since you only have to pay for the compute time you really use.   
- 
-When the first requests hits your function, AWS Lambda will immediately spin up an instance of your function to handle the request. 
-The subsequent requests will be handled by the same instance until the load goes up, then AWS Lambda will spin up extra instance(s) to process them fast enough.
+When the first requests hits your function, AWS Lambda will immediately spin up an instance of your function to handle the request.
+The subsequent requests will be handled by the same instance until the load goes up, then AWS Lambda will spin up extra instances to process them fast enough.
 
 Each time AWS Lambda has to spin up an instance to process a request, that's called a cold start, which could add several seconds to your start up.
-These first requests take longer to be processed, requests after this to the same container are usually refered to as warm start.
+These first requests take longer to be processed, requests after this to the same container are usually referred to as warm start.
 
 ![AWS Lambda cold start]({{ site.url }}/img/post/coldstart.png)
 
 ## When do these cold starts happen?
-It's important to understand when these cold starts happen before we can see what we can and should do to minimize them.
+It's important to understand when these cold starts happen before we can see what we can and should do to shorten them.
 Here are a few examples when AWS has to spin up a new instance and go through a cold start:
 - First request on your function
 - Concurrent invocations
 - After AWS cleans up instances 
 - After function deployment or configuration change  
 
-You will be able to understand it better when you can visualize this.
+These visualization might give you a better understanding of why this is an issue.
 This is an example of a Lambda that's being called 100 times sequentially with a concurrency of 1:  
 ![AWS Lambda concurrency 1]({{ site.url }}/img/post/coldstart-concurrency-1.png)
 
@@ -49,14 +48,15 @@ As you can see, in the second case we'll have 10 cold starts since AWS spins up 
 ## Are cold starts really an issue? 
 There are a lot of different types of applications, so understanding your use case is important before you can decide if cold starts are really an issue.
 
-When you are building an asynchronous service, it might not a big issue when that function takes a while to cold start. 
-When you are building a synchronous service (REST API) it's probably important to understand and see how big the impact could be.
 
-Since only a small percentage of requests will incur a cold start, it's crucial to put it into perspective and focus on performance of warm instances.
+When you are building an asynchronous function, it might not be a big issue if that function takes a while to cold start. 
+When you are building a synchronous function (REST API) it's probably important to understand and see how big the impact could be.
+
+Since only a small percentage of requests will lead to a cold start, it's crucial to put it into perspective and focus on performance of warm instances.
 Depending on your Service Level Agreements, you should check if your 95th-99th percentile requests are making the required latency.
 
-## How do we minimize these cold starts?  
-What can you do to make these cold starts as fast as possible? There a few things you should keep in mind.  
+## How do we speed these cold starts?  
+What can you do to make these cold starts as fast as possible? There a few things you should keep in mind:  
 
 ### 1. Avoid putting your Lambda in a VPC (Virtual Private Cloud)
 In short: don't use a VPC unless you **absolutely have to**.
@@ -65,7 +65,7 @@ A VPC can add up to 10-15 seconds to your function's cold start. Yes you read th
 When you do this, an Elastic Network Interface (ENI) must be created, 
 an IP address must be allocated to the ENI, then the ENI is attached to the Lambda. Definitely read up on the [AWS documentation](https://docs.aws.amazon.com/lambda/latest/dg/vpc.html) on this.
 
-It's important to note that putting your Lambda inside doesn't make it more secure unlike it does for EC2.
+It's important to note that putting your Lambda inside a VPC doesn't make it more secure unlike it does for EC2.
 For EC2 you need a VPC to shield your machine from malicious traffic.
 Lambda functions are protected by AWS Identity and Access Management (IAM) service, which provides both authentication and authorization. 
 All incoming requests have to be signed with a valid AWS credential, and the caller must have the correct IAM permission.
@@ -225,5 +225,5 @@ Default to Lambda's outside of a VPC, unless you really need it.
 When the highest start up performance is needed, be open to experiment with a different language like node.js.
 
 
-We haven't spoekn about the AWS Lambda Custom Runtimes, but they open up some more possibilities to tweak the JVM settings or to deploy an experimental GraalVM native-image.
+We haven't spoken about the AWS Lambda Custom Runtimes, but they open up some more possibilities to tweak the JVM settings or to deploy an experimental GraalVM native-image.
 In my next post I will experiment with a GraalVM native-image, see how the performance measures up and what limitations it has.
