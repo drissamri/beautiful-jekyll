@@ -41,7 +41,7 @@ First you'll have to [install Docker](https://docs.docker.com/installation/). Do
 
 ### Building your own Docker image
 
-Now you've seen how to get images from the Docker Hub, what about if you want to build your own image. Everything starts with a Dockerfile, a simple text based file you will create which what you want your environment will look like. Let's take the [Linkshortener REST API](http://www.drissamri.be/blog/rest/building-your-own-linkshortener-api/ "Linkshortener REST API") we build last time, which was a executable jar file that launches its own Tomcat server and put it inside a Docker container.
+Now you've seen how to get images from the Docker Hub, what about if you want to build your own image. Everything starts with a Dockerfile, a simple text based file you will create which what you want your environment will look like. Let's take the [Linkshortener REST API](http://www.drissamri.com/blog/rest/building-your-own-linkshortener-api/ "Linkshortener REST API") we build last time, which was a executable jar file that launches its own Tomcat server and put it inside a Docker container.
 
 To get started we add a file called **Dockerfile** into the root of our maven project. This will be the only file we need to maintain to instruct Docker how to build and run our application. This file will contain a set of simple commands to construct an environment with our application.
 
@@ -116,4 +116,4 @@ In this example I'm using Spring Boot and an executable jar file. If you are usi
 I hope this has shed a light on the whole Docker hype since it doesn't look like its going away any time soon.
 
 You can find the source for the Linkshortener application and the Dockerfile on [GitHub](https://github.com/drissamri/linkshortener/tree/blog-docker-for-java).
-You can learn how to deploy Docker containers on IBM Bluemix PaaS in my other [blog post](http://www.drissamri.be/blog/continuous-delivery/docker-on-bluemix/ "Deploy Docker on Bluemix").
+You can learn how to deploy Docker containers on IBM Bluemix PaaS in my other [blog post](http://www.drissamri.com/blog/continuous-delivery/docker-on-bluemix/ "Deploy Docker on Bluemix").

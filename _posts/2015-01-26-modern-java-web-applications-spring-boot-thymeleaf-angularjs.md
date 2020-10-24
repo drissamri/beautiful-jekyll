@@ -9,7 +9,7 @@ tags:
  - Spring Boot
  - Thymeleaf
 ---
-I've already blogged about [Spring Boot](http://www.drissamri.be/blog/architecture/what-are-microservices/) and how easy it makes your life as a Spring developer, if you haven't looked into it you really should stop now and do that first.
+I've already blogged about [Spring Boot](http://www.drissamri.com/blog/architecture/what-are-microservices/) and how easy it makes your life as a Spring developer, if you haven't looked into it you really should stop now and do that first.
 
 If you're using Java in an enterprise environment, you've most likely been using JSP quite a bit which does the job pretty well. I'm here to show you there are other templating technologies you can use that have much more modern features. Today I'll use [Thymeleaf](http://www.thymeleaf.org/), a templating engine which has been around for quite a while. It has flawless support for Spring MVC and Spring Security, which plays a big role in its success.
 

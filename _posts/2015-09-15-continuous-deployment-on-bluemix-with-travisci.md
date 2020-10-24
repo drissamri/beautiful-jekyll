@@ -16,7 +16,7 @@ You've been reading much about Continuous Integration and Continuous Deployment 
 
 If you are currently using a public GitHub repository then you can also use Travis CI for free! If you don't know Travis CI, it's a hosted Continuous Integration platform that makes it easy to have automated builds for your applications. If you have used Jenkins before, you can compare it with that, only you don't have to install anything since it's an online service so you can just sign up with your GitHub account.
 
-Luckily for me, I'm using a public repository for my [website](https://drissamri.be/blog/2015/09/05/hosting-a-jekyll-website-on-bluemix/) so I'm able to try out it out without paying a dime. What I want to accomplish is that each commit on my Git master branch triggers a build in Travis CI. This build will do a couple of things, first it will generate my Jekyll static site, then run [html-proofer](https://github.com/gjtorikian/html-proofer) to see if any of the links on the website are broken and finally deploy the site to [Bluemix](http://bluemix.net). Since Bluemix is based on [Cloud Foundry](https://www.cloudfoundry.org/) this guide will also work for any other provider that uses Cloud Foundry like [Pivotal WebServices](https://run.pivotal.io/), [anynines](http://www.anynines.com/) and so on. I prefer Bluemix because it offers a lot of services and also has a pretty decent free tier. Free GitHub, check. Free Travis CI, check. Free Bluemix, check. Let's do this!
+Luckily for me, I'm using a public repository for my [website](https://drissamri.com/blog/2015/09/05/hosting-a-jekyll-website-on-bluemix/) so I'm able to try out it out without paying a dime. What I want to accomplish is that each commit on my Git master branch triggers a build in Travis CI. This build will do a couple of things, first it will generate my Jekyll static site, then run [html-proofer](https://github.com/gjtorikian/html-proofer) to see if any of the links on the website are broken and finally deploy the site to [Bluemix](http://bluemix.net). Since Bluemix is based on [Cloud Foundry](https://www.cloudfoundry.org/) this guide will also work for any other provider that uses Cloud Foundry like [Pivotal WebServices](https://run.pivotal.io/), [anynines](http://www.anynines.com/) and so on. I prefer Bluemix because it offers a lot of services and also has a pretty decent free tier. Free GitHub, check. Free Travis CI, check. Free Bluemix, check. Let's do this!
 
 Doing this will mean I can rest assured that Jekyll is able to build my site, that all the links in my pages are functional (html-proofer) and that the latest version of my code is always pushed to the Bluemix server. Automating this process will leave it less error prone and give me more time to actually write content!
 
@@ -26,7 +26,7 @@ Head over to [Travis CI](https://travis-ci.org/) and Sign up with you GitHub cre
 
 ![Travis CI sign up]({{ site.url }}/img/post/travis-ci-signup.png)
 
-Next head over to your profile so you can select which repository you want to enable in TravisCI. In my case this is the repository for this site, the repository is called `drissamri/drissamri.be`. This will enable TravisCI start whenever a commit is pushed to Git.
+Next head over to your profile so you can select which repository you want to enable in TravisCI. In my case this is the repository for this site, the repository is called `drissamri/drissamri.com`. This will enable TravisCI start whenever a commit is pushed to Git.
 
 ![Travis CI sign up]({{ site.url }}/img/post/travis-ci-enable-repository.png)
 
@@ -105,7 +105,7 @@ deploy:
   space: $CF_ENV
 ```
 
-Travis CI works with the notion of deploy providers to deploy to different platform. You can read more about them [here](http://docs.travis-ci.com/user/deployment/). Since Bluemix is based on Cloud Foundry we can use the Cloud Foundry deployment provider. If you don't have an account yet, or don't know how to get up and running with Jekyll with Bluemix then definitely check out my previous post about running [Jekyll on Bluemix]([website](https://drissamri.be/blog/2015/09/05/hosting-a-jekyll-website-on-bluemix/)).
+Travis CI works with the notion of deploy providers to deploy to different platform. You can read more about them [here](http://docs.travis-ci.com/user/deployment/). Since Bluemix is based on Cloud Foundry we can use the Cloud Foundry deployment provider. If you don't have an account yet, or don't know how to get up and running with Jekyll with Bluemix then definitely check out my previous post about running [Jekyll on Bluemix]([website](https://drissamri.com/blog/2015/09/05/hosting-a-jekyll-website-on-bluemix/)).
 
 We are using environment variables (`$CF_API`, `$CF_USER`, `$CF_PASS`, `$CF_ORG` and`$CF_ENV`) that we still need to define since we don't want our credentials to be available in cleartext in a file that is available on GitHub. Always externalize sensitive information!
 

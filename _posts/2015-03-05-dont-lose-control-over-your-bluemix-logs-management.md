@@ -10,13 +10,13 @@ tags:
  - Papertrail
  - Loggregator
 ---
-Lately I have been busy deploying more Cloud based applications, mostly on [Bluemix](https://console.ng.bluemix.net/). I try to following a [Microservices](http://www.drissamri.be/blog/architecture/what-are-microservices/) (or Service Oriented) Architecture approach so I have multiple applications working together.
+Lately I have been busy deploying more Cloud based applications, mostly on [Bluemix](https://console.ng.bluemix.net/). I try to following a [Microservices](http://www.drissamri.com/blog/architecture/what-are-microservices/) (or Service Oriented) Architecture approach so I have multiple applications working together.
  At a certain point following up on the status of these systems should not be a manual job anymore. This is why I decided take a first step to managing my infrastructure better by centralizing my all my log files in one system.
 
 There are quite a few logging solutions out there. From the super popular [ElasticSearch/Logstash/Kibana (ELK)](http://www.elasticsearch.org/overview/elkdownloads/) open-source stack to online Software-as-a-Service (SaaS) log management systems. Today, I wanted to get started quickly with my Bluemix logs management so I decided to try out one of these SaaS logging services, but in the future I will also be playing around with the ELK stack.
 
 If you are using WebSphere Liberty or node.js on Bluemix, you can easily get started with the provided [IBM Monitoring and Analytics](https://www.ng.bluemix.net/docs/#services/monana/index.html) service.
- This will not work for me since I'm working with my [Linkshortener](http://www.drissamri.be/blog/rest/building-your-own-linkshortener-api/) application, which is a Spring Boot application that runs on an embedded Tomcat application server.
+ This will not work for me since I'm working with my [Linkshortener](http://www.drissamri.com/blog/rest/building-your-own-linkshortener-api/) application, which is a Spring Boot application that runs on an embedded Tomcat application server.
 
 I decided to take a look around to see what kind of other online services are available, and after quickly Googling I was directed to plenty of options:
 

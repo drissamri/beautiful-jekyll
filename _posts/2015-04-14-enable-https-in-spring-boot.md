@@ -13,7 +13,7 @@ tags:
 ---
 This weekend I answered a question about enabling HTTPS in JHipster on [StackOverflow](http://stackoverflow.com/questions/29522114/how-to-add-self-signed-ssl-certificate-to-jhipster-sample-app/29582178#29582178) that caught a lot of interest on Twitter so I decided to put a short post on it with some more useful details.
 
-JHipster is a Spring Boot application with a lot of neat features and other frameworks completely integrated. The configuration is exactly the same like any other Spring Boot application, including the SSL settings. If you are interested to get a quick introduction on JHipster, feel free to take a look at my [_Start a modern Java web application with JHipster_](http://www.drissamri.be/blog/technology/starting-modern-java-project-with-jhipster/)
+JHipster is a Spring Boot application with a lot of neat features and other frameworks completely integrated. The configuration is exactly the same like any other Spring Boot application, including the SSL settings. If you are interested to get a quick introduction on JHipster, feel free to take a look at my [_Start a modern Java web application with JHipster_](http://www.drissamri.com/blog/technology/starting-modern-java-project-with-jhipster/)
 
 If you are using Spring Boot and want to enable SSL (https) for your application on the embedded Tomcat there a few short steps you will need to take.
 

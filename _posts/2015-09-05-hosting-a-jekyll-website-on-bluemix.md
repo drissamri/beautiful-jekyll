@@ -10,7 +10,7 @@ tags:
  - GitHub
 ---
 
-As you might [know](https://www.drissamri.be/blog/2015/05/17/drissamri-home-v2/), this site is created as a static website with Jekyll.
+As you might [know](https://www.drissamri.com/blog/2015/05/17/drissamri-home-v2/), this site is created as a static website with Jekyll.
 
 
 GitHub Pages in combination with Jekyll is a simple yet powerful tool to build and serve static websites.
@@ -52,17 +52,17 @@ cf push
 
 Using stack cflinuxfs2...
 OK
-Updating app drissamri.be in org drissamri / space prod as driss.amri@optis.be...
+Updating app drissamri.com in org drissamri / space prod as driss.amri@optis.be...
 OK
 
-Using route drissamri-prd.drissamri.be
-Uploading drissamri.be...
+Using route drissamri-prd.drissamri.com
+Uploading drissamri.com...
 Uploading app files from: /Users/driss/workspace/drissamri/drissamri.github.io/_site
 Uploading 626.3K, 76 files
 Done uploading
 OK
 
-Starting app drissamri.be in org drissamri / space prod as driss.amri@optis.be...
+Starting app drissamri.com in org drissamri / space prod as driss.amri@optis.be...
 -----> Downloaded app package (1.3M)
 Cloning into '/tmp/buildpacks/staticfile-buildpack'...
 Submodule 'compile-extensions' (https://github.com/cloudfoundry-incubator/compile-extensions.git) registered for path 'compile-extensions'
@@ -83,15 +83,15 @@ App started
 
 OK
 
-App drissamri.be was started using this command `sh boot.sh`
+App drissamri.com was started using this command `sh boot.sh`
 
-Showing health and status for app drissamri.be in org drissamri / space prod as driss.amri@optis.be...
+Showing health and status for app drissamri.com in org drissamri / space prod as driss.amri@optis.be...
 OK
 
 requested state: started
 instances: 1/1
 usage: 64M x 1 instances
-urls: drissamri-prd.drissamri.be
+urls: drissamri-prd.drissamri.com
 last uploaded: Wed Sep 2 20:34:35 UTC 2015
 stack: cflinuxfs2
 
@@ -103,20 +103,20 @@ Now your application should be available on `https://YOURHOST.mybluemix.net`.
 
 ## Setup your custom domain in Bluemix ##
 
-I want my site to be available on `drissamri.be` and `www.drissamri.be`. There's a few easy steps to do to accomplish this. If you are OK with using the default Bluemix URL of your application or you don't have a custom domain, you can skip these steps.
+I want my site to be available on `drissamri.com` and `www.drissamri.com`. There's a few easy steps to do to accomplish this. If you are OK with using the default Bluemix URL of your application or you don't have a custom domain, you can skip these steps.
 
 First you will have to define your domain in Bluemix. Create the domain in Bluemix and associate it with an organization, in my case it's `called drissamri.`
 
 {% highlight bash %}
-cf create-domain drissamri drissamri.be
-cf create-domain drissamri www.drissamri.be
+cf create-domain drissamri drissamri.com
+cf create-domain drissamri www.drissamri.com
 {% endhighlight %}
 
-Now your domain is known within your organization, next you'll want to map this domain to your application. Both my domain name and application name are called... `drissamri.be`.
+Now your domain is known within your organization, next you'll want to map this domain to your application. Both my domain name and application name are called... `drissamri.com`.
 
 {% highlight bash %}
-cf map-route drissamri.be drissamri.be
-cf map-route drissamri.be www.drissamri.be
+cf map-route drissamri.com drissamri.com
+cf map-route drissamri.com www.drissamri.com
 {% endhighlight %}
 
 ### Enable SSL ###

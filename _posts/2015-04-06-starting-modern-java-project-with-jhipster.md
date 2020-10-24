@@ -12,7 +12,7 @@ tags:
 Today, I want to talk about a great open-source Java project that will help you hit the ground running when starting a new Java project: [JHipster](http://jhipster.github.io/).  
  JHipster is a [Yeoman](http://yeoman.io/) generator that will create a modern AngularJS application with a Spring Boot backend which you can use as a starting point for your own application.
 
-As many of you were very interested in my [Modern Java web application with Spring Boot](http://www.drissamri.be/blog/technology/modern-java-web-applications-spring-boot-thymeleaf-angularjs/) post, I decided it was finally a good time play around with JHipster since it uses everything I tried to bring show you guys in that post.
+As many of you were very interested in my [Modern Java web application with Spring Boot](http://www.drissamri.com/blog/technology/modern-java-web-applications-spring-boot-thymeleaf-angularjs/) post, I decided it was finally a good time play around with JHipster since it uses everything I tried to bring show you guys in that post.
 
 ### Getting started with JHipster
 

@@ -13,7 +13,7 @@ tags:
 
 You might have heard of [Bluemix](https://console.ng.Bluemix.net/ "Bluemix"), IBM's Platform-as-a-Service (PaaS), in the ongoing cloud battle. It's one of the competitors of [Google App Engine (GAE)](https://cloud.google.com/appengine/docs) and [AWS Elastic Beanstalk](http://aws.amazon.com/elasticbeanstalk/) and [RedHat OpenShift](https://www.openshift.com/).
 
-Recently IBM [launched](https://developer.ibm.com/Bluemix/2014/12/04/ibm-containers-beta-docker/) their Containers service (beta) based on Docker. This service allows you to run your Docker images on Bluemix. I was excited to read this news since I've been wanting to play around with Bluemix and also I've recently [Dockerized](http://www.drissamri.be/blog/continuous-delivery/introducing-docker-java-developer/) a Spring Boot application which I want to get up and running in the cloud.
+Recently IBM [launched](https://developer.ibm.com/Bluemix/2014/12/04/ibm-containers-beta-docker/) their Containers service (beta) based on Docker. This service allows you to run your Docker images on Bluemix. I was excited to read this news since I've been wanting to play around with Bluemix and also I've recently [Dockerized](http://www.drissamri.com/blog/continuous-delivery/introducing-docker-java-developer/) a Spring Boot application which I want to get up and running in the cloud.
 
 ## Getting started
 
@@ -62,7 +62,7 @@ Currently there are two images out-of-the-box in your private Docker registry:
 
 If you are using one of there technologies and you don't have a Docker image yet, it might be a good idea to play around with these images. These images run a SSH server by default, enabled by supervisord.
 
-I didn't want to tie myself to one of their images, so I decided to proceed with my own image created in my previous [Docker introduction](http://www.drissamri.be/blog/continuous-delivery/introducing-docker-java-developer/) blog post. I changed the underlying Docker images to my own lightweight images: [drissamri/base](https://registry.hub.docker.com/u/drissamri/base/dockerfile/) and [drissamri/java:jre8](https://registry.hub.docker.com/u/drissamri/base/dockerfile/). This JRE image is only 140,3MB, which is very small compared to the previous one that was over 700 MB. For now the JRE is sufficient for my Spring Boot application it is all I need, and the application server is embedded by Spring boot. When I ever need to build an image that actually needs a JDK instead of a JRE alone, then I'll create a new tag on my Docker repository.
+I didn't want to tie myself to one of their images, so I decided to proceed with my own image created in my previous [Docker introduction](http://www.drissamri.com/blog/continuous-delivery/introducing-docker-java-developer/) blog post. I changed the underlying Docker images to my own lightweight images: [drissamri/base](https://registry.hub.docker.com/u/drissamri/base/dockerfile/) and [drissamri/java:jre8](https://registry.hub.docker.com/u/drissamri/base/dockerfile/). This JRE image is only 140,3MB, which is very small compared to the previous one that was over 700 MB. For now the JRE is sufficient for my Spring Boot application it is all I need, and the application server is embedded by Spring boot. When I ever need to build an image that actually needs a JDK instead of a JRE alone, then I'll create a new tag on my Docker repository.
 
 Now go to the folder where your Dockerfile is located, here you can find my simple Dockerfile:
  [gist https://gist.github.com/drissamri/bd2066234b44acc2900b]

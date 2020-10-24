@@ -9,7 +9,7 @@ tags:
  - Microservice
  - REST
 ---
-In this post I'll show you how to build your own Linkshortener microservice. If you are still wondering what a microservice is, check out my previous post [Microservices! Micro.. what?](http://www.drissamri.be/blog/architecture/what-are-microservices/).
+In this post I'll show you how to build your own Linkshortener microservice. If you are still wondering what a microservice is, check out my previous post [Microservices! Micro.. what?](http://www.drissamri.com/blog/architecture/what-are-microservices/).
 
 We will be focussed on building a simple REST API that provides the basic functionality we need to create Linkshortener application. If you need to get an idea about what a Linkshortener is, just think about [tinyURL](http://tinyurl.com/) or [bit.ly](https://bitly.com/) where you can submit a long URL and they create a short hash from it. This makes it easier to share a short link with other people instead of the original long URL. When people navigate to this short URL, they will be redirected to the original long URL. The implementation today will be a very simplified version and it will only implement the REST API behind the graphical web interface. In future posts we will be gradually extend this project to highlight other aspects like REST Security, building a frontend with AngularJS, Continuous Delivery with Docker and so on.
 
@@ -261,11 +261,11 @@ return isSupported;
 
 At this point we are able to run our Application.java class already to start up an embedded Tomcat. Before we do this I'll make a quick change to the LinkEntity to avoid exposing fields to our REST client that aren't necessary. This is easily done by adding an **@JsonIgnore** annotation to the fields you want to keep hidden. As you could see in the original **LinkEntity** source code, I already them there to all fields except hash and url. Now we are all set and you can run your application and try it out by doing a POST with your favorite REST client. I use a Chrome extension called [Postman](http://www.getpostman.com/ "Postman REST client").
 
-If you try to do a POST on **http://localhost:8080/links?url=http://www.drissamri.be** it will return the following response.
+If you try to do a POST on **http://localhost:8080/links?url=http://www.drissamri.com** it will return the following response.
 
 {% highlight javascript %}
  {
- "url": "http://www.drissamri.be",
+ "url": "http://www.drissamri.com",
  "hash": "miufvo"
  }
 {% endhighlight %}
@@ -321,7 +321,7 @@ First let us update the LinkService to have a method that can return the Link UR
 
 LinkEntity foundLink = linkRepository.findByHash(hash);
  if (foundLink == null) {
- url = "http://www.drissamri.be"; // Extra traffic, yay!
+ url = "http://www.drissamri.com"; // Extra traffic, yay!
  } else {
  url = foundLink.getUrl();
  }

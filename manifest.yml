@@ -1,6 +1,6 @@
 ---
 applications:
-- name: drissamri.be
+- name: drissamri.com
   memory: 64M
   path: _site/
   env:
