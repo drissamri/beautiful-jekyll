@@ -7,11 +7,11 @@ permalink: /publications/
 ## Talks
 
 <a href="https://speakerdeck.com/drissamri/up-up-and-away-serverless-on-aws" target="_blank">**Up, up and away - Serverless on AWS**</a>
-  This talk was giving during a brown bag session @ Telenet. An introduction to Serverless and AWS Lambda on AWS.
+  This talk was giving during a brown bag session @ Telenet. An introduction to Serverless and AWS Lambda on AWS.  
 **08/07/2020** 
 
 <a href="https://speakerdeck.com/drissamri/serverless-lessons-learned-nike-brown-bag" target="_blank">**Serverless on AWS: lessons learned**</a>
-  This talk was giving during a brown bag session @ Nike ELC. An overview of lessons learned of building Serverless architectures on AWS.
+  This talk was giving during a brown bag session @ Nike ELC. An overview of lessons learned of building Serverless architectures on AWS.  
 **28/03/2019** 
 
 [**Introduction to JHipster**](https://speakerdeck.com/drissamri/introduction-to-jhipster) - [YouTube](https://youtu.be/lKzdgmoWIBo?list=LLATE3uiONzGMbrNW-I2DDPw&t=1461
